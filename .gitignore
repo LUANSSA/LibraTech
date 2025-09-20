@@ -1,0 +1,27 @@
+# Ambiente virtual
+.venv/
+venv/
+
+# Arquivos de configuração local
+.env
+
+# Banco de dados local
+db.sqlite3
+
+# Arquivos compilados do Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Arquivos de logs
+*.log
+
+# Arquivos de cache do Django
+*.pot
+*.pyc
+*.mo
+
+# Diretórios do VSCode ou IDEs
+.vscode/
+.idea/
