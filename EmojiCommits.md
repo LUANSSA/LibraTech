@@ -10,10 +10,10 @@ Utilizamos emojis para identificar rapidamente o tipo de mudança feita no proje
 | 🐛    | Bugfix               | Bug fix               | Correção de um erro no código                              |
 | 🚑    | Correção Crítica     | Hotfix                | Correção crítica ou urgente                                |
 | 🔒    | Segurança            | Security              | Ajustes voltados para segurança                            |
-| 📇    | Metadata             | Metadata              | Alteração de metadados como título, versão, autor etc.    |
+| 📇    | Metadata             | Metadata              | Alteração de metadados como título, versão, autor etc.     |
 | ♻️    | Refatoração          | Refactor              | Refatoração de código sem alteração de comportamento       |
 | 📚    | Documentação         | Docs                  | Mudanças ou acréscimos na documentação                     |
-| ♿    | Acessibilidade       | Accessibility         | Melhorias de acessibilidade no sistema                     |
+| ♿     | Acessibilidade       | Accessibility         | Melhorias de acessibilidade no sistema                     |
 | 🐎    | Performance          | Performance           | Melhorias na performance da aplicação                      |
 | 🎨    | CSS                  | CSS                   | Alterações em estilos CSS                                  |
 | 💄    | CSS (UI)             | UI style              | Ajustes visuais ou na interface do usuário (UI)            |

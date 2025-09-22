@@ -17,6 +17,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from livros.views import *
+from arquivos.views import *
+from periodicos.views import *
+from revistas.views import *
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('/', admin.site.urls),
+    # Livros
+    path("livros/", LivoListarView),
+    # path("livros/cadastrar", LivroCadastrarView),
+    # path("livros/alterar", LivroAlterarView),
+    # path("livros/excluir", LivroExcluirView),
+    # Arquivos
+    path("arquivos/", ArquivosListarView),
+    # Periódicos
+    path("periodicos/", PeriodicosListarView),
+    # Revistas
+    path("revistas/", RevistasListarView),
 ]
