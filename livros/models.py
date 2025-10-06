@@ -22,6 +22,9 @@ class Livros(models.Model):
     area_acervo = models.CharField(verbose_name="Área do Acervo", max_length=300, null=False, blank=False)
     referencia_ABNT = models.TextField(verbose_name="Referência ABNT", null=True, blank=True)
     nota = models.TextField(verbose_name="Nota", null=True, blank=True)
+    disponibilidade = models.BooleanField(default=True)
+    data_cadastro = models.DateTimeField(auto_now_add=True)
+    data_atualizacao = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.titulo

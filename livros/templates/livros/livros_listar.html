@@ -1,10 +1,47 @@
-{% extends "base.html" %}
+{% extends "core/base.html" %}
 
 {% block titulo_da_pagina %}
-Livros
+Acervo - Livros
 {% endblock  %}
 
-{% block conteudo %}
-<h1>Livros</h1>
+{% comment %} Listagee de livros {% endcomment %}
+{% block conteudo%}
 
-{% endblock  %}
+{% comment %} Cadastro de livro {% endcomment %}
+<section class="d-grid justify-content-md-end">
+    <a href="/livros/form" type="button" class="btn btn-success btn-sm">Cadastrar Livro</a>
+</section>
+
+{% comment %} Título {% endcomment %}
+<h1 class="mb-4">Livros</h1>
+
+{% comment %} Tabela de livros {% endcomment %}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Título</th>
+            <th scope="col">Área do Acervo</th>
+            <th scope="col">Nº de Tombamento</th>
+            <th scope="col">Chamada</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for livro in livros %}
+            <tr>
+                <th scope="row">{{ livro.id }}</th>
+                <td>{{ livro.titulo }}</td>
+                <td>{{ livro.area_acervo }}</td>
+                <td>{{ livro.num_tombamento }}</td>
+                <td>{{ livro.chamada }}</td>
+                <td>
+                    <a href="form/{{ livro.id }}" class="btn btn-success btn-sm">Editar</a>
+                    <a href="excluir/{{ livro.id }}" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock conteudo %}
