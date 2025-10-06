@@ -1,9 +1,46 @@
-{% extends "base.html" %}
+{% extends "core/base.html" %}
 
 {% block titulo_da_pagina %}
-Periódicos
+Acervo - Periódicos
 {% endblock  %}
 
-{% block conteudo %}
-<h1>Periódicos</h1>
-{% endblock  %}
+
+{% comment %} Listagee de livros {% endcomment %}
+{% block conteudo%}
+
+{% comment %} Cadastro de livro {% endcomment %}
+<section class="d-grid justify-content-md-end">
+    <a href="/periodicos/form" type="button" class="btn btn-success btn-sm">Cadastrar Periódico</a>
+</section>
+
+{% comment %} Título {% endcomment %}
+<h1 class="mb-4">Periódicos</h1>
+
+{% comment %} Tabela de livros {% endcomment %}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Título</th>
+            <th scope="col">Área do Acervo</th>
+            <th scope="col">ISSN</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for periodico in periodicos %}
+            <tr>
+                <th scope="row">{{ periodico.id }}</th>
+                <td>{{ periodico.titulo }}</td>
+                <td>{{ periodico.area_acervo }}</td>
+                <td>{{ periodico.issn }}</td>
+                <td>
+                    <a href="form/{{ periodico.id }}" class="btn btn-success btn-sm">Editar</a>
+                    <a href="excluir/{{ periodico.id }}" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock conteudo %}

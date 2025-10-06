@@ -1,20 +1,52 @@
 from django.shortcuts import render
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-# Create your views here.
+from .models import Periodicos
 
-
-# Listar periódico
-def PeriodicosListarView(request):
-    return render(request, "periodicos/periodicos_listar.html")
+# Listar periódicos
+class PeriodicosListarView(ListView):
+    model = Periodicos
+    template_name = "periodicos/periodicos_listar.html"
+    context_object_name = "periodicos"
 
 # Cadastrar periódico
-# def PeriodicosCadastrarView(request):
-#     return render(request, "periodicos/periodicos_cadastrar.html")
+class PeriodicosCadastrarView(CreateView):
+    # Modelo
+    model = Periodicos
+    # Arquivo
+    template_name = "periodicos/periodicos_form.html"
+    # Nome do modelo
+    context_object_name = "periodicos"
+    fields = [
+        "titulo", "sub_titulo", "issn", "frequencia", "periodo_inicio", "periodo_fim",
+        "volume", "numero", "editora", "local", "assunto", "area_acervo",
+        "referencia_ABNT", "nota", "disponibilidade"
+    ]
+    # Redirecionar
+    success_url = "/periodicos"
 
-# # Alterar periódico
-# def PeriodicosAlterarView(request):
-#     return render(request, "periodicos/periodicos_alterar.html")
+# Alterar periódico
+class PeriodicosAlterarView(UpdateView):
+    # Modelo
+    model = Periodicos
+    # Arquivo
+    template_name = "periodicos/periodicos_form.html"
+    # Nome do modelo
+    context_object_name = "periodicos"
+    fields = [
+        "titulo", "sub_titulo", "issn", "frequencia", "periodo_inicio", "periodo_fim",
+        "volume", "numero", "editora", "local", "assunto", "area_acervo",
+        "referencia_ABNT", "nota", "disponibilidade"
+    ]
+    # Redirecionar
+    success_url = "/periodicos"
 
-# # Excluir periódico
-# def PeriodicoExcluirView(request):
-#     return render(request, "periodico/periodico_excluir.html")
+class PeriodicosExcluirView(DeleteView):
+    # Modelo
+    model = Periodicos
+    # Arquivo
+    template_name = "periodicos/periodicos_excluir.html"
+    # Nome do modelo
+    context_object_name = "periodicos"
+    # Redirecionar
+    success_url = "/periodicos"
