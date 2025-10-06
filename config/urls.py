@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from core.views import Home
 from livros.views import *
 from arquivos.views import *
 from periodicos.views import *
@@ -24,15 +25,23 @@ from revistas.views import *
 
 urlpatterns = [
     path('/', admin.site.urls),
-    # Livros
-    path("livros/", LivoListarView),
-    # path("livros/cadastrar", LivroCadastrarView),
-    # path("livros/alterar", LivroAlterarView),
-    # path("livros/excluir", LivroExcluirView),
+    path("", Home),
+
     # Arquivos
     path("arquivos/", ArquivosListarView),
+
+    # Livros
+    path("livros/", LivroListarView.as_view()),
+    path("livros/form", LivroCadastrarView.as_view()),
+    path("livros/form/<int:pk>", LivroAlterarView.as_view()),
+    path("livros/excluir/<int:pk>", LivrosExcluirView.as_view()),
+
     # Periódicos
-    path("periodicos/", PeriodicosListarView),
+    path("periodicos/", PeriodicosListarView.as_view()),
+    path("periodicos/form", PeriodicosCadastrarView.as_view()),
+    path("periodicos/form/<int:pk>", PeriodicosAlterarView.as_view()),
+    path("periodicos/excluir/<int:pk>", PeriodicosExcluirView.as_view()),
+    
     # Revistas
     path("revistas/", RevistasListarView),
 ]
