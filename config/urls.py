@@ -24,9 +24,8 @@ from periodicos.views import *
 from revistas.views import *
 
 urlpatterns = [
-    path('/', admin.site.urls),
+    path('/admin', admin.site.urls),
     path("", Home),
-
     # Arquivos
     path("arquivos/", ArquivosListarView),
 
