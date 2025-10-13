@@ -24,19 +24,22 @@ from periodicos.views import *
 from revistas.views import *
 
 urlpatterns = [
-    path('/admin', admin.site.urls),
+
+    path('admin/', admin.site.urls),
     path("", Home),
     # Arquivos
     path("arquivos/", ArquivosListarView),
 
     # Livros
     path("livros/", LivroListarView.as_view()),
+    path("livros/<int:pk>", LivroDetalheView.as_view()),
     path("livros/form", LivroCadastrarView.as_view()),
     path("livros/form/<int:pk>", LivroAlterarView.as_view()),
     path("livros/excluir/<int:pk>", LivrosExcluirView.as_view()),
 
     # Periódicos
     path("periodicos/", PeriodicosListarView.as_view()),
+    path("periodicos/<int:pk>", PeriodicosDetalheView.as_view()),
     path("periodicos/form", PeriodicosCadastrarView.as_view()),
     path("periodicos/form/<int:pk>", PeriodicosAlterarView.as_view()),
     path("periodicos/excluir/<int:pk>", PeriodicosExcluirView.as_view()),
