@@ -1,12 +1,33 @@
 from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.db.models import Q
 from .models import Periodicos
 
 # Listar periódicos
 class PeriodicosListarView(ListView):
     model = Periodicos
     template_name = "periodicos/periodicos_listar.html"
+    context_object_name = "periodicos"
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search = self.request.GET.get("search", "")
+
+        queryset = queryset.filter(
+            Q(titulo__icontains=search) |
+            Q(sub_titulo__icontains=search) |
+            Q(assunto__icontains=search) |
+            Q(area_acervo__icontains=search)
+        )
+        return queryset
+
+# Detalhe de periódicos
+class PeriodicosDetalheView(DetailView):
+    # Modelo
+    model = Periodicos
+    # Arquivo
+    template_name = "periodicos/periodicos_detalhe2.html"
+    # Nome do modelo
     context_object_name = "periodicos"
 
 # Cadastrar periódico

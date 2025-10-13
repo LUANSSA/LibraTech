@@ -1,0 +1,108 @@
+{% extends "core/base.html" %}
+
+{% block titulo_da_pagina %}
+Acervo - Periódicos
+{% endblock  %}
+
+
+{% comment %} Listagee de livros {% endcomment %}
+{% block conteudo%}
+<div class="container-lg mt-4">
+
+    <h1 class="mb-4">{{ periodicos.titulo }}</h1>
+
+    <!-- Tabela para telas grandes -->
+    <div class="d-none d-md-block">
+        <table class="table table-bordered table-hover">
+            <tbody>
+                <tr>
+                    <th>Subtítulo</th>
+                    <td>{{ periodicos.sub_titulo }}</td>
+                    <th>ISSN</th>
+                    <td>{{ periodicos.issn }}</td>
+                </tr>
+                <tr>
+                    <th>Frequência</th>
+                    <td>{{ periodicos.frequencia }}</td>
+                    <th>Editora</th>
+                    <td>{{ periodicos.editora }}</td>
+                </tr>
+                <tr>
+                    <th>Local</th>
+                    <td>{{ periodicos.local }}</td>
+                    <th>Disponibilidade</th>
+                    <td>{% if periodicos.disponibilidade %}Disponível{% else %}Indisponível{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Período de Início</th>
+                    <td>{{ periodicos.periodo_inicio|date:"d/m/Y" }}</td>
+                    <th>Período de Fim</th>
+                    <td>{{ periodicos.periodo_fim|date:"d/m/Y" }}</td>
+                </tr>
+                <tr>
+                    <th>Volume</th>
+                    <td>{{ periodicos.volume }}</td>
+                    <th>Número</th>
+                    <td>{{ periodicos.numero }}</td>
+                </tr>
+                <tr>
+                    <th>Assunto</th>
+                    <td>{{ periodicos.assunto }}</td>
+                    <th>Área do Acervo</th>
+                    <td>{{ periodicos.area_acervo }}</td>
+                </tr>
+                <tr>
+                    <th>Referência ABNT</th>
+                    <td colspan="3">{{ periodicos.referencia_ABNT }}</td>
+                </tr>
+                <tr>
+                    <th>Nota</th>
+                    <td colspan="3">{{ periodicos.nota }}</td>
+                </tr>
+                <tr>
+                    <th>Data de Cadastro</th>
+                    <td>{{ periodicos.data_cadastro|date:"d/m/Y H:i" }}</td>
+                    <th>Última Atualização</th>
+                    <td>{{ periodicos.data_atualizacao|date:"d/m/Y H:i" }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Blocos para telas pequenas -->
+    <div class="d-md-none">
+        <div class="card mb-2 p-2">
+            <p><strong>Subtítulo:</strong> {{ periodicos.sub_titulo }}</p>
+            <p><strong>ISSN:</strong> {{ periodicos.issn }}</p>
+            <p><strong>Frequência:</strong> {{ periodicos.frequencia }}</p>
+            <p><strong>Editora:</strong> {{ periodicos.editora }}</p>
+            <p><strong>Local:</strong> {{ periodicos.local }}</p>
+            <p><strong>Disponibilidade:</strong> {% if periodicos.disponibilidade %}Disponível{% else %}Indisponível{% endif %}</p>
+        </div>
+        <div class="card mb-2 p-2">
+            <p><strong>Período de Início:</strong> {{ periodicos.periodo_inicio|date:"d/m/Y" }}</p>
+            <p><strong>Período de Fim:</strong> {{ periodicos.periodo_fim|date:"d/m/Y" }}</p>
+            <p><strong>Volume:</strong> {{ periodicos.volume }}</p>
+            <p><strong>Número:</strong> {{ periodicos.numero }}</p>
+        </div>
+        <div class="card mb-2 p-2">
+            <p><strong>Assunto:</strong> {{ periodicos.assunto }}</p>
+            <p><strong>Área do Acervo:</strong> {{ periodicos.area_acervo }}</p>
+            <p><strong>Referência ABNT:</strong> {{ periodicos.referencia_ABNT }}</p>
+            <p><strong>Nota:</strong> {{ periodicos.nota }}</p>
+        </div>
+        <div class="card mb-2 p-2">
+            <p><strong>Data de Cadastro:</strong> {{ periodicos.data_cadastro|date:"d/m/Y H:i" }}</p>
+            <p><strong>Última Atualização:</strong> {{ periodicos.data_atualizacao|date:"d/m/Y H:i" }}</p>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <a href="" class="btn btn-secondary btn-sm">Voltar</a>
+        <a href="form/{{ periodicos.id }}" class="btn btn-success btn-sm">Editar</a>
+    </div>
+
+</div>
+
+
+{% endblock %}

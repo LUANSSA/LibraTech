@@ -13,8 +13,15 @@ Acervo - Periódicos
     <a href="/periodicos/form" type="button" class="btn btn-success btn-sm">Cadastrar Periódico</a>
 </section>
 
-{% comment %} Título {% endcomment %}
-<h1 class="mb-4">Periódicos</h1>
+{% comment %} Título e Pesquisa {% endcomment %}
+<div>
+    <h1 class="mb-4">Periódicos</h1>
+    <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" name="search" placeholder="Buscar periódicos..." aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form>
+</div>
+
 
 {% comment %} Tabela de livros {% endcomment %}
 <table class="table table-hover">
@@ -30,10 +37,12 @@ Acervo - Periódicos
     <tbody>
         {% for periodico in periodicos %}
             <tr>
-                <th scope="row">{{ periodico.id }}</th>
-                <td>{{ periodico.titulo }}</td>
-                <td>{{ periodico.area_acervo }}</td>
-                <td>{{ periodico.issn }}</td>
+                <th scope="row">
+                    <a href="/periodicos/{{ periodico.id }}">{{ periodico.id }}</a>
+                </th>
+                <td><a href="/periodicos/{{ periodico.id }}">{{ periodico.titulo }}</a></td>
+                <td><a href="/periodicos/{{ periodico.id }}">{{ periodico.area_acervo }}</a></td>
+                <td><a href="/periodicos/{{ periodico.id }}">{{ periodico.issn }}</a></td>
                 <td>
                     <a href="form/{{ periodico.id }}" class="btn btn-success btn-sm">Editar</a>
                     <a href="excluir/{{ periodico.id }}" class="btn btn-danger btn-sm">Excluir</a>
