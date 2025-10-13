@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.db.models import Q
 # from models import Livros
 # Create your views here.
 
@@ -15,6 +16,27 @@ class LivroListarView(ListView):
     # Nome do modelo
     context_object_name = "livros"
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search = self.request.GET.get("search", "")
+        
+        queryset = queryset.filter(
+            Q(titulo__icontains=search) |
+            Q(sub_titulo__icontains=search) |
+            Q(area_acervo__icontains=search) |
+            Q(assunto__icontains=search)
+
+        )
+        return queryset
+
+# Detalhe de livro
+class LivroDetalheView(DetailView):
+    # Modelo
+    model = Livros
+    # Arquivo
+    template_name = "livros/livros_detalhe2.html"
+    # Nome do modelo
+    context_object_name = "livros"
 
 # Cadastrar livro
 class LivroCadastrarView(CreateView):

@@ -12,8 +12,14 @@ Acervo - Livros
     <a href="/livros/form" type="button" class="btn btn-success btn-sm">Cadastrar Livro</a>
 </section>
 
-{% comment %} Título {% endcomment %}
-<h1 class="mb-4">Livros</h1>
+{% comment %} Título e Pesquisa {% endcomment %}
+<div>
+    <h1 class="mb-4">Livros</h1>
+    <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" name="search" placeholder="Buscar livros..." aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form>
+</div>
 
 {% comment %} Tabela de livros {% endcomment %}
 <table class="table table-hover">
@@ -30,11 +36,13 @@ Acervo - Livros
     <tbody>
         {% for livro in livros %}
             <tr>
-                <th scope="row">{{ livro.id }}</th>
-                <td>{{ livro.titulo }}</td>
-                <td>{{ livro.area_acervo }}</td>
-                <td>{{ livro.num_tombamento }}</td>
-                <td>{{ livro.chamada }}</td>
+                <th scope="row">
+                    <a href="/livros/{{livro.id}}">{{ livro.id }}</a>
+                </th>
+                <td><a href="/livros/{{livro.id}}">{{ livro.titulo }}</a></td>
+                <td><a href="/livros/{{livro.id}}">{{ livro.area_acervo }}</a></td>
+                <td><a href="/livros/{{livro.id}}">{{ livro.num_tombamento }}</a></td>
+                <td><a href="/livros/{{livro.id}}">{{ livro.chamada }}</a></td>
                 <td>
                     <a href="form/{{ livro.id }}" class="btn btn-success btn-sm">Editar</a>
                     <a href="excluir/{{ livro.id }}" class="btn btn-danger btn-sm">Excluir</a>

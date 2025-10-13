@@ -1,0 +1,81 @@
+{% extends "core/base.html" %}
+
+{% block titulo_da_pagina %}
+Acervo - Livros
+{% endblock  %}
+
+{% comment %} Listagee de livros {% endcomment %}
+{% block conteudo%}
+{% comment %} Template de detalhe do livro {% endcomment %}
+<div class="container-lg mt-4">
+
+    <h1 class="mb-4">{{ livros.titulo }}</h1>
+
+    <div class="row g-4">
+
+        <!-- Informações principais -->
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">Informações Básicas</div>
+                <div class="card-body">
+                    <p><strong>Subtítulo:</strong> {{ livros.sub_titulo }}</p>
+                    <p><strong>Coleção:</strong> {{ livros.colecao }}</p>
+                    <p><strong>Edição:</strong> {{ livros.edicao }}</p>
+                    <p><strong>Local:</strong> {{ livros.local }}</p>
+                    <p><strong>Editora:</strong> {{ livros.editora }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Publicação e identificação -->
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">Publicação & Identificação</div>
+                <div class="card-body">
+                    <p><strong>Ano:</strong> {{ livros.ano }}</p>
+                    <p><strong>Data de Publicação:</strong> {{ livros.mes_ano_publicacao|date:"d/m/Y" }}</p>
+                    <p><strong>Páginas:</strong> {{ livros.paginas }}</p>
+                    <p><strong>Volume:</strong> {{ livros.volume }}</p>
+                    <p><strong>Tomo:</strong> {{ livros.tomo }}</p>
+                    <p><strong>Chamada:</strong> {{ livros.chamada }}</p>
+                    <p><strong>Nº de Tombamento:</strong> {{ livros.num_tombamento }}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Assunto e notas -->
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-info text-white">Assunto e Notas</div>
+                <div class="card-body">
+                    <p><strong>Assunto:</strong> {{ livros.assunto }}</p>
+                    <p><strong>Área do Acervo:</strong> {{ livros.area_acervo }}</p>
+                    <p><strong>Descrição:</strong> {{ livros.descricao }}</p>
+                    <p><strong>Referência ABNT:</strong> {{ livros.referencia_ABNT }}</p>
+                    <p><strong>Nota:</strong> {{ livros.nota }}</p>
+                    <p><strong>Disponibilidade:</strong> {% if livros.disponibilidade %}Disponível{% else %}Indisponível{% endif %}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Datas -->
+        <div class="col-md-6">
+            <div class="card shadow-sm">
+                <div class="card-header bg-warning text-dark">Datas</div>
+                <div class="card-body">
+                    <p><strong>Data de Cadastro:</strong> {{ livros.data_cadastro|date:"d/m/Y H:i" }}</p>
+                    <p><strong>Última Atualização:</strong> {{ livros.data_atualizacao|date:"d/m/Y H:i" }}</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="mt-4">
+        <a href="" class="btn btn-secondary btn-sm">Voltar</a>
+        <a href="form/{{ livros.id }}" class="btn btn-success btn-sm">Editar</a>
+    </div>
+
+</div>
+
+{% endblock %}

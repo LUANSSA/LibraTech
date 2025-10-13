@@ -1,0 +1,166 @@
+{% extends "core/base.html" %}
+
+{% block titulo_da_pagina %}
+Acervo - Livros
+{% endblock  %}
+
+{% comment %} Listagee de livros {% endcomment %}
+{% block conteudo%}
+{% comment %} Template de detalhe do livro {% endcomment %}
+<div class="container-lg mt-4">
+
+    <h1 class="mb-4">{{ livros.titulo }}</h1>
+
+    <!-- Informações Básicas -->
+    <h5 class="mt-4">Informações Básicas</h5>
+
+    <!-- Tabela para telas médias e grandes -->
+    <div class="d-none d-md-block table-responsive">
+        <table class="table table-bordered table-hover">
+            <tbody>
+                <tr>
+                    <th>Subtítulo</th>
+                    <td>{{ livros.sub_titulo }}</td>
+                    <th>Coleção</th>
+                    <td>{{ livros.colecao }}</td>
+                </tr>
+                <tr>
+                    <th>Edição</th>
+                    <td>{{ livros.edicao }}</td>
+                    <th>Local</th>
+                    <td>{{ livros.local }}</td>
+                </tr>
+                <tr>
+                    <th>Editora</th>
+                    <td>{{ livros.editora }}</td>
+                    <th>Ano</th>
+                    <td>{{ livros.ano }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Blocos para telas pequenas -->
+    <div class="d-md-none">
+        <div class="card mb-2 p-2">
+            <p><strong>Subtítulo:</strong> {{ livros.sub_titulo }}</p>
+            <p><strong>Coleção:</strong> {{ livros.colecao }}</p>
+            <p><strong>Edição:</strong> {{ livros.edicao }}</p>
+            <p><strong>Local:</strong> {{ livros.local }}</p>
+            <p><strong>Editora:</strong> {{ livros.editora }}</p>
+            <p><strong>Ano:</strong> {{ livros.ano }}</p>
+        </div>
+    </div>
+
+    <!-- Publicação & Identificação -->
+    <h5 class="mt-4">Publicação & Identificação</h5>
+    <div class="d-none d-md-block table-responsive">
+        <table class="table table-bordered table-hover">
+            <tbody>
+                <tr>
+                    <th>Data de Publicação</th>
+                    <td>{{ livros.mes_ano_publicacao|date:"d/m/Y" }}</td>
+                    <th>Páginas</th>
+                    <td>{{ livros.paginas }}</td>
+                </tr>
+                <tr>
+                    <th>Volume</th>
+                    <td>{{ livros.volume }}</td>
+                    <th>Tomo</th>
+                    <td>{{ livros.tomo }}</td>
+                </tr>
+                <tr>
+                    <th>Chamada</th>
+                    <td>{{ livros.chamada }}</td>
+                    <th>Nº de Tombamento</th>
+                    <td>{{ livros.num_tombamento }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-md-none">
+        <div class="card mb-2 p-2">
+            <p><strong>Data de Publicação:</strong> {{ livros.mes_ano_publicacao|date:"d/m/Y" }}</p>
+            <p><strong>Páginas:</strong> {{ livros.paginas }}</p>
+            <p><strong>Volume:</strong> {{ livros.volume }}</p>
+            <p><strong>Tomo:</strong> {{ livros.tomo }}</p>
+            <p><strong>Chamada:</strong> {{ livros.chamada }}</p>
+            <p><strong>Nº de Tombamento:</strong> {{ livros.num_tombamento }}</p>
+        </div>
+    </div>
+
+    <!-- Assunto e Notas -->
+    <h5 class="mt-4">Assunto e Notas</h5>
+    <div class="d-none d-md-block table-responsive">
+        <table class="table table-bordered table-hover">
+            <tbody>
+                <tr>
+                    <th>Assunto</th>
+                    <td>{{ livros.assunto }}</td>
+                    <th>Área do Acervo</th>
+                    <td>{{ livros.area_acervo }}</td>
+                </tr>
+                <tr>
+                    <th>Disponibilidade</th>
+                    <td>{% if livros.disponibilidade %}Disponível{% else %}Indisponível{% endif %}</td>
+                    <th>Descrição</th>
+                    <td>{{ livros.descricao }}</td>
+                </tr>
+                <tr>
+                    <th>Referência ABNT</th>
+                    <td colspan="3">{{ livros.referencia_ABNT }}</td>
+                </tr>
+                <tr>
+                    <th>Nota</th>
+                    <td colspan="3">{{ livros.nota }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-md-none">
+        <div class="card mb-2 p-2">
+            <p><strong>Assunto:</strong> {{ livros.assunto }}</p>
+            <p><strong>Área do Acervo:</strong> {{ livros.area_acervo }}</p>
+            <p><strong>Disponibilidade:</strong> {% if livros.disponibilidade %}Disponível{% else %}Indisponível{% endif %}</p>
+            <p><strong>Descrição:</strong> {{ livros.descricao }}</p>
+            <p><strong>Referência ABNT:</strong> {{ livros.referencia_ABNT }}</p>
+            <p><strong>Nota:</strong> {{ livros.nota }}</p>
+        </div>
+    </div>
+
+    <!-- Datas -->
+    <h5 class="mt-4">Datas</h5>
+    <div class="d-none d-md-block table-responsive">
+        <table class="table table-bordered table-hover">
+            <tbody>
+                <tr>
+                    <th>Data de Cadastro</th>
+                    <td>{{ livros.data_cadastro|date:"d/m/Y H:i" }}</td>
+                    <th>Última Atualização</th>
+                    <td>{{ livros.data_atualizacao|date:"d/m/Y H:i" }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-md-none">
+        <div class="card mb-2 p-2">
+            <p><strong>Data de Cadastro:</strong> {{ livros.data_cadastro|date:"d/m/Y H:i" }}</p>
+            <p><strong>Última Atualização:</strong> {{ livros.data_atualizacao|date:"d/m/Y H:i" }}</p>
+        </div>
+    </div>
+
+    <!-- Botões -->
+    <div class="mt-4">
+        <a href="" class="btn btn-secondary btn-sm">Voltar</a>
+        <a href="form/{{ livros.id }}" class="btn btn-success btn-sm">Editar</a>
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
