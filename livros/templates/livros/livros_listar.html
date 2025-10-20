@@ -12,11 +12,14 @@ Acervo - Livros
     <a href="/livros/form" type="button" class="btn btn-success btn-sm">Cadastrar Livro</a>
 </section>
 
+{% comment %} CRIA UMA querystring SEM PAGE {% endcomment %}
+{% with request.GET.search as querystring %}
+
 {% comment %} Título e Pesquisa {% endcomment %}
 <div>
     <h1 class="mb-4">Livros</h1>
     <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" name="search" placeholder="Buscar livros..." aria-label="Search">
+        <input class="form-control me-2" type="search" name="search" value="{{querystring}}" placeholder="Buscar livros..." aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Buscar</button>
     </form>
 </div>
@@ -52,4 +55,8 @@ Acervo - Livros
     </tbody>
 </table>
 
+{% comment %} Paginação {% endcomment %}
+{% include "core/paginacao.html" %}
+
+{% endwith %}
 {% endblock conteudo %}

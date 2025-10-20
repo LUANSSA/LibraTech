@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.db.models import Q
+from django.core.paginator import Paginator
 # from models import Livros
 # Create your views here.
 
@@ -15,11 +16,14 @@ class LivroListarView(ListView):
     template_name = "livros/livros_listar.html"
     # Nome do modelo
     context_object_name = "livros"
+    # Quantidade de itens por página
+    paginate_by = 8
 
+    # Consulta com filtro
     def get_queryset(self):
         queryset = super().get_queryset()
         search = self.request.GET.get("search", "")
-        
+
         queryset = queryset.filter(
             Q(titulo__icontains=search) |
             Q(sub_titulo__icontains=search) |
@@ -28,7 +32,7 @@ class LivroListarView(ListView):
 
         )
         return queryset
-
+    
 # Detalhe de livro
 class LivroDetalheView(DetailView):
     # Modelo
