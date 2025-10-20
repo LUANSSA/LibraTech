@@ -22,7 +22,7 @@ Utilizamos emojis para identificar rapidamente o tipo de mudança feita no proje
 | 💩    | Depreciado           | Deprecated            | Código ruim ou que será substituído                        |
 | 🗑️    | Removendo Código     | Remove code           | Exclusão de trechos de código                              |
 | 🗑️    | Removendo Arquivo    | Remove file           | Exclusão de arquivos                                       |
-| 🚧    | WIP                  | Work in progress      | Alterações em andamento ainda não finalizadas              |
+| 🚧    | Trabalho em Progresso| Work in progress      | Alterações em andamento ainda não finalizadas              |
 | 📁    | Pasta                | Folder                | Criação ou reorganização de pastas                         |
 | 📄    | Arquivo              | File                  | Criação ou alteração de arquivos                           |
 
