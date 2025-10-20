@@ -45,5 +45,9 @@ urlpatterns = [
     path("periodicos/excluir/<int:pk>", PeriodicosExcluirView.as_view()),
     
     # Revistas
-    path("revistas/", RevistasListarView),
+    path("revistas/", RevistasListarView.as_view()),
+    path("revistas/<int:pk>", RevistasDetalheView.as_view()),
+    path("revistas/form", RevistasCadastrarView.as_view()),
+    path("revistas/form/<int:pk>", RevistasAlterarView.as_view()),
+    path("revistas/excluir/<int:pk>", RevistasExcluirView.as_view()),
 ]
