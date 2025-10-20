@@ -7,7 +7,26 @@
     <title>{% block titulo_da_pagina %}{% endblock titulo_da_pagina%}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <style>
+        .search-main {
+            height: 80vh; /* altura da main, ajusta conforme necessário */
+            background-image: url("../images/sua-imagem.jpg"); /* caminho da imagem */
+            background-size: cover;
+            background-position: center top; /* parte superior cheia de livros */
+            background-repeat: no-repeat;
+            background-color: #f8f9fa; /* caso a imagem não carregue */
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: top;
+        }
 
+        .search-container {
+            background: rgba(255, 255, 255, 0.8); /* deixa o input legível sobre a imagem */
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 600px;
+            width: 90%;
+        }
     </style>
 </head>
 

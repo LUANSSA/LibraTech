@@ -1,3 +1,20 @@
 {% extends "core/base.html" %}
 
 {% block titulo_da_pagina %}Acervo{% endblock titulo_da_pagina %}
+
+{% block conteudo %}
+
+
+{% comment %} Título e Pesquisa {% endcomment %}
+<div class="search-section d-flex align-items-center justify-content-center text-center">
+    <div class="search-container">
+        <h1 class="mb-4">Pesquise Livros, Revistas e Periódicos</h1>
+        <form class="d-flex justify-content-center gap-2" role="search" method="get" action="">
+            <input class="form-control" type="search" name="search" placeholder="Buscar livros..." aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+    </div>
+</div>
+
+
+{% endblock conteudo %}
