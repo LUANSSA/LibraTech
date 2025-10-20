@@ -2,8 +2,65 @@
 
 {% block titulo_da_pagina %}
 Acervo - Revistas
-{% endblock  %}
+{% endblock %}
 
+{% comment %} Listagem de revistas {% endcomment %}
 {% block conteudo %}
-<h1>Revistas</h1>
-{% endblock  %}
+
+{% comment %} Botão de cadastro de revista {% endcomment %}
+<section class="d-grid justify-content-md-end">
+    <a href="/revistas/form" type="button" class="btn btn-success btn-sm">Cadastrar Revista</a>
+</section>
+
+{% comment %} Captura a querystring de pesquisa {% endcomment %}
+{% with request.GET.search as querystring %}
+
+{% comment %} Título e pesquisa {% endcomment %}
+<div>
+    <h1 class="mb-4">Revistas</h1>
+    <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" name="search" value="{{ querystring }}" placeholder="Buscar revistas..." aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+    </form>
+</div>
+
+{% comment %} Tabela de revistas {% endcomment %}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Título</th>
+            <th scope="col">Volume</th>
+            <th scope="col">Número</th>
+            <th scope="col">Área do Acervo</th>
+            <th scope="col">Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for revista in revistas %}
+            <tr>
+                <th scope="row">
+                    <a href="/revistas/{{ revista.id }}">{{ revista.id }}</a>
+                </th>
+                <td><a href="/revistas/{{ revista.id }}">{{ revista.titulo }}</a></td>
+                <td><a href="/revistas/{{ revista.id }}">{{ revista.volume }}</a></td>
+                <td><a href="/revistas/{{ revista.id }}">{{ revista.numero }}</a></td>
+                <td><a href="/revistas/{{ revista.id }}">{{ revista.area_acervo }}</a></td>
+                <td>
+                    <a href="/revistas/form/{{ revista.id }}" class="btn btn-success btn-sm">Editar</a>
+                    <a href="/revistas/excluir/{{ revista.id }}" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="6" class="text-center">Nenhuma revista encontrada.</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% comment %} Paginação {% endcomment %}
+{% include "core/paginacao.html" %}
+
+{% endwith %}
+{% endblock conteudo %}
