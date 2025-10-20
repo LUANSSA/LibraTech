@@ -5,9 +5,14 @@ from .models import Periodicos
 
 # Listar periódicos
 class PeriodicosListarView(ListView):
+    # Modelo
     model = Periodicos
+    # Arquivo
     template_name = "periodicos/periodicos_listar.html"
+    # Nome do modelo
     context_object_name = "periodicos"
+    # Quantidade de itens por página
+    paginate_by = 8
 
     def get_queryset(self):
         queryset = super().get_queryset()
