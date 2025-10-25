@@ -9,7 +9,7 @@ Acervo - Revistas
 
 {% comment %} Botão de cadastro de revista {% endcomment %}
 <section class="d-grid justify-content-md-end">
-    <a href="/revistas/form" type="button" class="btn btn-success btn-sm">Cadastrar Revista</a>
+    <a href="{% url 'revistas_cadastrar' %}" type="button" class="btn btn-success btn-sm">Cadastrar Revista</a>
 </section>
 
 {% comment %} Captura a querystring de pesquisa {% endcomment %}
@@ -40,15 +40,15 @@ Acervo - Revistas
         {% for revista in revistas %}
             <tr>
                 <th scope="row">
-                    <a href="/revistas/{{ revista.id }}">{{ revista.id }}</a>
+                    <a href="{% url 'revistas_detalhe' revista.id %}">{{ revista.id }}</a>
                 </th>
-                <td><a href="/revistas/{{ revista.id }}">{{ revista.titulo }}</a></td>
-                <td><a href="/revistas/{{ revista.id }}">{{ revista.volume }}</a></td>
-                <td><a href="/revistas/{{ revista.id }}">{{ revista.numero }}</a></td>
-                <td><a href="/revistas/{{ revista.id }}">{{ revista.area_acervo }}</a></td>
+                <td><a href="{% url 'revistas_detalhe' revista.id %}">{{ revista.titulo }}</a></td>
+                <td><a href="{% url 'revistas_detalhe' revista.id %}">{{ revista.area_acervo }}</a></td>
+                <td><a href="{% url 'revistas_detalhe' revista.id %}">{{ revista.num_tombamento }}</a></td>
+                <td><a href="{% url 'revistas_detalhe' revista.id %}">{{ revista.chamada }}</a></td>
                 <td>
-                    <a href="/revistas/form/{{ revista.id }}" class="btn btn-success btn-sm">Editar</a>
-                    <a href="/revistas/excluir/{{ revista.id }}" class="btn btn-danger btn-sm">Excluir</a>
+                    <a href="{% url 'revistas_alterar' revista.id %}" class="btn btn-success btn-sm">Editar</a>
+                    <a href="{% url 'revistas_excluir' revista.id %}" class="btn btn-danger btn-sm">Excluir</a>
                 </td>
             </tr>
         {% empty %}
