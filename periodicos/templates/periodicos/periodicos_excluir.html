@@ -13,6 +13,6 @@ Excluir Periódico
         {% csrf_token %}
 
         <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
-        <a href="/periodicos" class="btn btn-secondary btn-sm">Cancelar</a>
+        <a href="javascript:history.back()" class="btn btn-secondary btn-sm">Cancelar</a>
     </form>
 {% endblock %}
