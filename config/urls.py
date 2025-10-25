@@ -22,32 +22,45 @@ from livros.views import *
 from arquivos.views import *
 from periodicos.views import *
 from revistas.views import *
+from painel.views import *
 
 urlpatterns = [
 
     path('admin/', admin.site.urls),
+    # Painel (dashboard e controle de usuários personalizado)
+    path('login/', PainelLoginView.as_view(), name="painel_login"),
+    path('recuperar-senha/', PainelRecuperarSenhaView.as_view(), name="painel_recuperar_senha"),
+    path('redefinir-senha/', PainelRedefinirSenhaView.as_view(), name="painel_redefinir_senha"),
+    path('painel/dashboard', PainelDashboardView.as_view(), name="painel_dashboard"),
+    path('painel/usuarios/', UsuariosListarView.as_view(), name="painel_usuarios_listar"),
+
     path("", Home),
-    # Arquivos
-    path("arquivos/", ArquivosListarView),
+
+   # Arquivos
+    path("painel/arquivos/", ArquivosListarView.as_view(), name="arquivos_listar"),
+    path("painel/arquivos/<int:pk>/", ArquivosDetalheView.as_view(), name="arquivos_detalhe"),
+    path("painel/arquivos/form/", ArquivosCadastrarView.as_view(), name="arquivos_cadastrar"),
+    path("painel/arquivos/form/<int:pk>/", ArquivosAlterarView.as_view(), name="arquivos_alterar"),
+    path("painel/arquivos/excluir/<int:pk>/", ArquivosExcluirView.as_view(), name="arquivos_excluir"),
 
     # Livros
-    path("livros/", LivroListarView.as_view()),
-    path("livros/<int:pk>", LivroDetalheView.as_view()),
-    path("livros/form", LivroCadastrarView.as_view()),
-    path("livros/form/<int:pk>", LivroAlterarView.as_view()),
-    path("livros/excluir/<int:pk>", LivrosExcluirView.as_view()),
+    path("painel/livros/", LivrosListarView.as_view(), name="livros_listar"),
+    path("painel/livros/<int:pk>/", LivrosDetalheView.as_view(), name="livros_detalhe"),
+    path("painel/livros/form/", LivrosCadastrarView.as_view(), name="livros_cadastrar"),
+    path("painel/livros/form/<int:pk>/", LivrosAlterarView.as_view(), name="livros_alterar"),
+    path("painel/livros/excluir/<int:pk>/", LivrosExcluirView.as_view(), name="livros_excluir"),
 
     # Periódicos
-    path("periodicos/", PeriodicosListarView.as_view()),
-    path("periodicos/<int:pk>", PeriodicosDetalheView.as_view()),
-    path("periodicos/form", PeriodicosCadastrarView.as_view()),
-    path("periodicos/form/<int:pk>", PeriodicosAlterarView.as_view()),
-    path("periodicos/excluir/<int:pk>", PeriodicosExcluirView.as_view()),
+    path("painel/periodicos/", PeriodicosListarView.as_view(), name="periodicos_listar"),
+    path("painel/periodicos/<int:pk>/", PeriodicosDetalheView.as_view(), name="periodicos_detalhe"),
+    path("painel/periodicos/form/", PeriodicosCadastrarView.as_view(), name="periodicos_cadastrar"),
+    path("painel/periodicos/form/<int:pk>/", PeriodicosAlterarView.as_view(), name="periodicos_alterar"),
+    path("painel/periodicos/excluir/<int:pk>/", PeriodicosExcluirView.as_view(), name="periodicos_excluir"),
     
     # Revistas
-    path("revistas/", RevistasListarView.as_view()),
-    path("revistas/<int:pk>", RevistasDetalheView.as_view()),
-    path("revistas/form", RevistasCadastrarView.as_view()),
-    path("revistas/form/<int:pk>", RevistasAlterarView.as_view()),
-    path("revistas/excluir/<int:pk>", RevistasExcluirView.as_view()),
+    path("painel/revistas/", RevistasListarView.as_view(), name="revistas_listar"),
+    path("painel/revistas/<int:pk>/", RevistasDetalheView.as_view(), name="revistas_detalhe"),
+    path("painel/revistas/form/", RevistasCadastrarView.as_view(), name="revistas_cadastrar"),
+    path("painel/revistas/form/<int:pk>/", RevistasAlterarView.as_view(), name="revistas_alterar"),
+    path("painel/revistas/excluir/<int:pk>/", RevistasExcluirView.as_view(), name="revistas_excluir"),
 ]

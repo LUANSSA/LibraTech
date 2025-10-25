@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'arquivos',
     'periodicos',
     'revistas',
+    'painel',
 ]
 
 MIDDLEWARE = [
