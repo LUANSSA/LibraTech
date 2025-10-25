@@ -4,12 +4,12 @@
 Acervo - Livros
 {% endblock  %}
 
-{% comment %} Listagee de livros {% endcomment %}
+{% comment %} Listagem de livros {% endcomment %}
 {% block conteudo%}
 
 {% comment %} Cadastro de livro {% endcomment %}
 <section class="d-grid justify-content-md-end">
-    <a href="/livros/form" type="button" class="btn btn-success btn-sm">Cadastrar Livro</a>
+    <a href="{% url 'livros_cadastrar' %}" type="button" class="btn btn-success btn-sm">Cadastrar Livro</a>
 </section>
 
 {% comment %} CRIA UMA querystring SEM PAGE {% endcomment %}
@@ -40,17 +40,21 @@ Acervo - Livros
         {% for livro in livros %}
             <tr>
                 <th scope="row">
-                    <a href="/livros/{{livro.id}}">{{ livro.id }}</a>
+                    <a href="{% url 'livros_detalhe' livro.id %}">{{ livro.id }}</a>
                 </th>
-                <td><a href="/livros/{{livro.id}}">{{ livro.titulo }}</a></td>
-                <td><a href="/livros/{{livro.id}}">{{ livro.area_acervo }}</a></td>
-                <td><a href="/livros/{{livro.id}}">{{ livro.num_tombamento }}</a></td>
-                <td><a href="/livros/{{livro.id}}">{{ livro.chamada }}</a></td>
+                <td><a href="{% url 'livros_detalhe' livro.id %}">{{ livro.titulo }}</a></td>
+                <td><a href="{% url 'livros_detalhe' livro.id %}">{{ livro.area_acervo }}</a></td>
+                <td><a href="{% url 'livros_detalhe' livro.id %}">{{ livro.num_tombamento }}</a></td>
+                <td><a href="{% url 'livros_detalhe' livro.id %}">{{ livro.chamada }}</a></td>
                 <td>
-                    <a href="form/{{ livro.id }}" class="btn btn-success btn-sm">Editar</a>
-                    <a href="excluir/{{ livro.id }}" class="btn btn-danger btn-sm">Excluir</a>
+                    <a href="{% url 'livros_alterar' livro.id %}" class="btn btn-success btn-sm">Editar</a>
+                    <a href="{% url 'livros_excluir' livro.id %}" class="btn btn-danger btn-sm">Excluir</a>
                 </td>
             </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6" class="text-center">Nenhum livro encontrado.</td>
+        </tr>
         {% endfor %}
     </tbody>
 </table>

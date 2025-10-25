@@ -9,7 +9,7 @@ from django.core.paginator import Paginator
 from .models import Livros
 
 # Listar livros
-class LivroListarView(ListView):
+class LivrosListarView(ListView):
     # Modelo
     model = Livros
     # Arquivo
@@ -34,7 +34,7 @@ class LivroListarView(ListView):
         return queryset
     
 # Detalhe de livro
-class LivroDetalheView(DetailView):
+class LivrosDetalheView(DetailView):
     # Modelo
     model = Livros
     # Arquivo
@@ -43,7 +43,7 @@ class LivroDetalheView(DetailView):
     context_object_name = "livros"
 
 # Cadastrar livro
-class LivroCadastrarView(CreateView):
+class LivrosCadastrarView(CreateView):
     # Modelo
     model = Livros
     # Arquivo
@@ -61,7 +61,7 @@ class LivroCadastrarView(CreateView):
     success_url = "/livros"
 
 # Alterar livro
-class LivroAlterarView(UpdateView):
+class LivrosAlterarView(UpdateView):
     # Modelo
     model = Livros
      # Arquivo
