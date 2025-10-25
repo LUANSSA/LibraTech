@@ -1,0 +1,27 @@
+{% extends "core/base.html" %}
+
+{% block titulo_da_pagina %}
+Recuperar Senha
+{% endblock %}
+
+{% block conteudo %}
+<div class="d-flex justify-content-center align-items-center" style="height: 80vh; background-image: url('/static/images/sua-imagem.jpg'); background-size: cover; background-position: center;">
+    <div class="card p-4 shadow" style="width: 100%; max-width: 400px; background: rgba(255,255,255,0.9);">
+        <h2 class="text-center mb-4">Recuperar Senha</h2>
+        <p class="text-center mb-4">Digite seu e-mail abaixo para receber o link de redefinição de senha.</p>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_email" class="form-label">E-mail</label>
+                <input type="email" name="email" id="id_email" class="form-control border border-dark" placeholder="Digite seu e-mail" required>
+            </div>
+            <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-success">Enviar Link</button>
+            </div>
+            <div class="text-center">
+                <a href="/login/" class="text-decoration-none">Voltar ao login</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

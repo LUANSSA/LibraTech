@@ -1,0 +1,143 @@
+{% extends "core/base.html" %}
+
+{% block titulo_da_pagina %}
+Dashboard
+{% endblock %}
+
+{% block conteudo %}
+<div class="container-lg py-4">
+
+    <!-- Título da página -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Dashboard</h2>
+        <div class="d-none d-md-block">
+            <div class="card p-2 text-center shadow" style="width: 180px;">
+                <div class="fw-bold">{{ user.username }}</div>
+                <small>{{ user.email }}</small>
+                <a href="/login/" class="btn btn-sm btn-outline-danger mt-2 w-100">Sair</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cards de resumo -->
+    <div class="row mb-4">
+        <div class="col-md-3 col-sm-6 mb-3">
+            <div class="card text-white bg-success shadow h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h5 class="card-title">Livros</h5>
+                            <h3>{{ total_livros }}</h3>
+                        </div>
+                        <div class="fs-1">📚</div>
+                    </div>
+                </div>
+                <div class="card-footer text-end">
+                    <a href="{% url 'livros_listar' %}" class="text-white text-decoration-none">Ver detalhes →</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-3">
+            <div class="card text-white bg-primary shadow h-100">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="card-title">Periódicos</h5>
+                        <h3>{{ total_periodicos }}</h3>
+                    </div>
+                    <div class="fs-1">📰</div>
+                </div>
+                <div class="card-footer text-end">
+                    <a href="{% url 'periodicos_listar' %}" class="text-white text-decoration-none">Ver detalhes →</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-3">
+            <div class="card text-white bg-warning shadow h-100">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="card-title">Revistas</h5>
+                        <h3>{{ total_revistas }}</h3>
+                    </div>
+                    <div class="fs-1">🗞️</div>
+                </div>
+                <div class="card-footer text-end">
+                    <a href="{% url 'revistas_listar' %}" class="text-white text-decoration-none">Ver detalhes →</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-3">
+            <div class="card text-white bg-secondary shadow h-100">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="card-title">Arquivos Recentes</h5>
+                        <h3>{{ total_arquivos }}</h3>
+                    </div>
+                    <div class="fs-1">📂</div>
+                </div>
+                <div class="card-footer text-end">
+                    <a href="{% url 'arquivos_listar' %}" class="text-white text-decoration-none">Ver detalhes →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Atalhos rápidos -->
+    <div class="mb-4">
+        <h5>Ações rápidas</h5>
+        <div class="d-flex flex-wrap gap-2">
+            <a href="{% url 'livros_cadastrar' %}" class="btn btn-success btn-sm">Cadastrar Livro</a>
+            <a href="{% url 'periodicos_cadastrar' %}" class="btn btn-primary btn-sm">Cadastrar Periódico</a>
+            <a href="{% url 'revistas_cadastrar' %}" class="btn btn-warning btn-sm">Cadastrar Revista</a>
+            <a href="{% url 'arquivos_cadastrar' %}" class="btn btn-secondary btn-sm">Cadastrar Arquivo</a>
+        </div>
+    </div>
+
+    <!-- Últimas atividades -->
+    <div class="row">
+        <div class="col-lg-8 mb-4">
+            <div class="card shadow h-100">
+                <div class="card-header">
+                    Últimas atividades
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-striped mb-0">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Ação</th>
+                                <th>Usuário</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for atividade in ultimas_atividades %}
+                            <tr>
+                                <td>{{ atividade.data|date:"d/m/Y H:i" }}</td>
+                                <td>{{ atividade.acao }}</td>
+                                <td>{{ atividade.usuario }}</td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="3" class="text-center">Nenhuma atividade encontrada.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Perfil do usuário no canto direito -->
+        <div class="col-lg-4 mb-4">
+            <div class="card shadow text-center">
+                <div class="card-body">
+                    <div class="fs-1 mb-2">👤</div>
+                    <h5 class="card-title">{{ user.username }}</h5>
+                    <p class="card-text">{{ user.email }}</p>
+                    <a href="/login/" class="btn btn-outline-danger btn-sm w-100">Sair</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
