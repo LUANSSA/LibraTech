@@ -57,25 +57,42 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
-                    {% comment %} Página de Arquivos {% endcomment %}
+                    {% comment %} Página Dashboard {% endcomment %}
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/arquivos">Arquivos</a>
-                    </li>
-                    {% comment %} Página de Livros {% endcomment %}
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/livros">Livros</a>
-                    </li>
-                    {% comment %} Página de Periódicos {% endcomment %}
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/periodicos">Periódicos</a>
-                    </li>
-                    {% comment %} Página de Revistas {% endcomment %}
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/revistas">Revistas</a>
+                        <a class="nav-link active" aria-current="page" href="{% url 'painel_dashboard' %}">Dashboard</a>
                     </li>
 
+                    {% comment %} Página de Arquivos {% endcomment %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'arquivos_listar' %}">Arquivos</a>
+                    </li>
+
+                    {% comment %} Página de Livros {% endcomment %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'livros_listar' %}">Livros</a>
+                    </li>
+
+                    {% comment %} Página de Periódicos {% endcomment %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'periodicos_listar' %}">Periódicos</a>
+                    </li>
+
+                    {% comment %} Página de Revistas {% endcomment %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'revistas_listar' %}">Revistas</a>
+                    </li>
                 </ul>
             </div>
+
+            <!-- Menu Botões Login e Registrar no canto direito -->
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item me-2">
+                    <a class="btn btn-outline-light btn-sm" href="{% url 'painel_login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-success btn-sm" href="{% url 'painel_recuperar_senha' %}">Registrar</a>
+                </li>
+            </ul>
         </div>
     </nav>
 
