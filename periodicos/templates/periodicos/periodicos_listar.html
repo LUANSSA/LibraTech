@@ -10,7 +10,11 @@ Acervo - Periódicos
 
 {% comment %} Cadastro de livro {% endcomment %}
 <section class="d-grid justify-content-md-end">
+    {% if user.is_authenticated %}
     <a href="{% url 'periodicos_cadastrar' %}" type="button" class="btn btn-success btn-sm">Cadastrar Periódico</a>
+    {% else %}
+    <span class="btn btn-success btn-sm invisible" aria-hidden="true">Cadastrar Periódico</span>
+    {% endif %}
 </section>
 
 {% comment %} CRIA UMA querystring SEM PAGE {% endcomment %}
@@ -33,8 +37,11 @@ Acervo - Periódicos
             <th scope="col">#</th>
             <th scope="col">Título</th>
             <th scope="col">Área do Acervo</th>
+            <th scope="col">Assunto</th>
             <th scope="col">ISSN</th>
-            <th scope="col">Ações</th>
+            {% if user.is_authenticated %}
+                <th scope="col">Ações</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -45,12 +52,14 @@ Acervo - Periódicos
                 </th>
                 <td><a href="{% url 'periodicos_detalhe' periodico.id %}">{{ periodico.titulo }}</a></td>
                 <td><a href="{% url 'periodicos_detalhe' periodico.id %}">{{ periodico.area_acervo }}</a></td>
-                <td><a href="{% url 'periodicos_detalhe' periodico.id %}">{{ periodico.num_tombamento }}</a></td>
-                <td><a href="{% url 'periodicos_detalhe' periodico.id %}">{{ periodico.chamada }}</a></td>
+                <td><a href="{% url 'periodicos_detalhe' periodico.id %}">{{ periodico.assunto }}</a></td>
+                <td><a href="{% url 'periodicos_detalhe' periodico.id %}">{{ periodico.issn }}</a></td>
+                {% if user.is_authenticated %}
                 <td>
                     <a href="{% url 'periodicos_alterar' periodico.id %}" class="btn btn-success btn-sm">Editar</a>
                     <a href="{% url 'periodicos_excluir' periodico.id %}" class="btn btn-danger btn-sm">Excluir</a>
                 </td>
+                {% endif %}
             </tr>
         {% empty %}
         <tr>
