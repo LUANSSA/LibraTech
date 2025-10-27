@@ -9,7 +9,11 @@ Acervo - Revistas
 
 {% comment %} Botão de cadastro de revista {% endcomment %}
 <section class="d-grid justify-content-md-end">
+     {% if user.is_authenticated %}
     <a href="{% url 'revistas_cadastrar' %}" type="button" class="btn btn-success btn-sm">Cadastrar Revista</a>
+    {% else %}
+    <span class="btn btn-success btn-sm invisible" aria-hidden="true">Cadastrar Revista</span>
+    {% endif %}
 </section>
 
 {% comment %} Captura a querystring de pesquisa {% endcomment %}
@@ -33,7 +37,9 @@ Acervo - Revistas
             <th scope="col">Volume</th>
             <th scope="col">Número</th>
             <th scope="col">Área do Acervo</th>
-            <th scope="col">Ações</th>
+            {% if user.is_authenticated %}
+                <th scope="col">Ações</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -46,10 +52,12 @@ Acervo - Revistas
                 <td><a href="{% url 'revistas_detalhe' revista.id %}">{{ revista.area_acervo }}</a></td>
                 <td><a href="{% url 'revistas_detalhe' revista.id %}">{{ revista.num_tombamento }}</a></td>
                 <td><a href="{% url 'revistas_detalhe' revista.id %}">{{ revista.chamada }}</a></td>
-                <td>
-                    <a href="{% url 'revistas_alterar' revista.id %}" class="btn btn-success btn-sm">Editar</a>
-                    <a href="{% url 'revistas_excluir' revista.id %}" class="btn btn-danger btn-sm">Excluir</a>
-                </td>
+                {% if user.is_authenticated %}
+                    <td>
+                        <a href="{% url 'revistas_alterar' revista.id %}" class="btn btn-success btn-sm">Editar</a>
+                        <a href="{% url 'revistas_excluir' revista.id %}" class="btn btn-danger btn-sm">Excluir</a>
+                    </td>
+                {% endif %}
             </tr>
         {% empty %}
             <tr>
