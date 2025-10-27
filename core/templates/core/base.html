@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block titulo_da_pagina %}{% endblock titulo_da_pagina%}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
     <style>
         .search-main {
             height: 80vh; /* altura da main, ajusta conforme necessário */
@@ -26,6 +28,11 @@
             border-radius: 0.5rem;
             max-width: 600px;
             width: 90%;
+        }
+
+        .bg-purple {
+            background-color: #6f42c1; /* Roxo do Bootstrap */
+            color: white; /* Garante contraste */
         }
     </style>
 </head>
@@ -57,15 +64,20 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
-                    {% comment %} Página Dashboard {% endcomment %}
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'painel_dashboard' %}">Dashboard</a>
-                    </li>
 
-                    {% comment %} Página de Arquivos {% endcomment %}
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{% url 'arquivos_listar' %}">Arquivos</a>
-                    </li>
+                    {% if user.is_authenticated %}
+                        {% comment %} Página Dashboard {% endcomment %}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'painel_dashboard' %}">Dashboard</a>
+                        </li>
+                    {% endif %}
+                    
+                    {% if user.is_authenticated %}
+                        {% comment %} Página de Arquivos {% endcomment %}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'arquivos_listar' %}">Arquivos</a>
+                        </li>
+                    {% endif %}
 
                     {% comment %} Página de Livros {% endcomment %}
                     <li class="nav-item">
@@ -84,14 +96,20 @@
                 </ul>
             </div>
 
-            <!-- Menu Botões Login e Registrar no canto direito -->
+            <!-- Menu Botões Login e Registrar no canto direito / Logout -->
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item me-2">
-                    <a class="btn btn-outline-light btn-sm" href="{% url 'painel_login' %}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-success btn-sm" href="{% url 'painel_recuperar_senha' %}">Registrar</a>
-                </li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item me-2">
+                        <a class="btn btn-outline-light btn-sm" href="{% url 'painel_sair' %}">Sair</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item me-2">
+                        <a class="btn btn-outline-light btn-sm" href="{% url 'painel_entrar' %}">Entrar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-success btn-sm" href="{% url 'painel_usuarios_cadastrar' %}">Registrar</a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </nav>
