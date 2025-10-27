@@ -9,7 +9,11 @@ Acervo - Livros
 
 {% comment %} Cadastro de livro {% endcomment %}
 <section class="d-grid justify-content-md-end">
-    <a href="{% url 'livros_cadastrar' %}" type="button" class="btn btn-success btn-sm">Cadastrar Livro</a>
+    {% if user.is_authenticated %}
+        <a href="{% url 'livros_cadastrar' %}" type="button" class="btn btn-success btn-sm">Cadastrar Livro</a>
+    {% else %}
+        <span class="btn btn-success btn-sm invisible" aria-hidden="true">Cadastrar Livro</span>
+    {% endif %}
 </section>
 
 {% comment %} CRIA UMA querystring SEM PAGE {% endcomment %}
@@ -33,7 +37,9 @@ Acervo - Livros
             <th scope="col">Área do Acervo</th>
             <th scope="col">Nº de Tombamento</th>
             <th scope="col">Chamada</th>
-            <th scope="col">Ações</th>
+            {% if user.is_authenticated %}
+                <th scope="col">Ações</th>
+            {% endif %}
         </tr>
     </thead>
     <tbody>
@@ -46,10 +52,12 @@ Acervo - Livros
                 <td><a href="{% url 'livros_detalhe' livro.id %}">{{ livro.area_acervo }}</a></td>
                 <td><a href="{% url 'livros_detalhe' livro.id %}">{{ livro.num_tombamento }}</a></td>
                 <td><a href="{% url 'livros_detalhe' livro.id %}">{{ livro.chamada }}</a></td>
+                {% if user.is_authenticated %}
                 <td>
                     <a href="{% url 'livros_alterar' livro.id %}" class="btn btn-success btn-sm">Editar</a>
                     <a href="{% url 'livros_excluir' livro.id %}" class="btn btn-danger btn-sm">Excluir</a>
                 </td>
+                {% endif %}
             </tr>
         {% empty %}
         <tr>

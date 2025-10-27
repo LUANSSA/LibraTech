@@ -125,7 +125,9 @@ Acervo - Livros
 
     <div class="mt-4">
         <a href="javascript:history.back()" class="btn btn-secondary btn-sm">Voltar</a>
-        <a href="{% url 'livros_alterar' livros.id %}" class="btn btn-success btn-sm">Editar</a>
+        {% if user.is_authenticated %}
+            <a href="{% url 'livros_alterar' livros.id %}" class="btn btn-success btn-sm">Editar</a>
+        {% endif %}
     </div>
 
 </div>

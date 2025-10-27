@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.db.models import Q
 from django.core.paginator import Paginator
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 # from models import Livros
 # Create your views here.
 
@@ -43,7 +45,7 @@ class LivrosDetalheView(DetailView):
     context_object_name = "livros"
 
 # Cadastrar livro
-class LivrosCadastrarView(CreateView):
+class LivrosCadastrarView(LoginRequiredMixin, CreateView):
     # Modelo
     model = Livros
     # Arquivo
@@ -61,7 +63,7 @@ class LivrosCadastrarView(CreateView):
     success_url = "/livros"
 
 # Alterar livro
-class LivrosAlterarView(UpdateView):
+class LivrosAlterarView(LoginRequiredMixin, UpdateView):
     # Modelo
     model = Livros
      # Arquivo
@@ -79,7 +81,7 @@ class LivrosAlterarView(UpdateView):
     success_url = "/livros"
 
 # Excluir livro
-class LivrosExcluirView(DeleteView):
+class LivrosExcluirView(LoginRequiredMixin, DeleteView):
     # Modelo
     model = Livros
     # Arquivo
