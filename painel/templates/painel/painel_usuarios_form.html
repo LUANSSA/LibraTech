@@ -1,0 +1,53 @@
+{% extends "core/base.html" %}
+
+{% block titulo_da_pagina %}
+Cadastro de Usuário
+{% endblock %}
+
+{% block conteudo %}
+<div class="d-flex justify-content-center align-items-center" style="height: 100vh; background-image: url('/static/images/sua-imagem.jpg'); background-size: cover; background-position: center;">
+    <div class="card p-4 shadow" style="width: 100%; max-width: 400px; background: rgba(255, 255, 255, 0.9);">
+        <h2 class="text-center mb-4">Crie sua conta</h2>
+        <p class="text-center mb-4">Preencha os campos abaixo para se cadastrar.</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <!-- Nome de usuário -->
+            <div class="mb-3">
+                <label for="id_username" class="form-label">Nome completo</label>
+                <input type="text" name="username" id="id_username" class="form-control border border-dark" placeholder="Digite seu nome completo" required>
+            </div>
+
+            <!-- E-mail -->
+            <div class="mb-3">
+                <label for="id_email" class="form-label">E-mail</label>
+                <input type="email" name="email" id="id_email" class="form-control border border-dark" placeholder="Digite seu e-mail" required>
+            </div>
+
+            <!-- Senha -->
+            <div class="mb-3">
+                <label for="id_password1" class="form-label">Senha</label>
+                <input type="password" name="password1" id="id_password1" class="form-control border border-dark" placeholder="Digite uma senha" required>
+            </div>
+
+            <!-- Confirmar senha -->
+            <div class="mb-3">
+                <label for="id_password2" class="form-label">Confirmar senha</label>
+                <input type="password" name="password2" id="id_password2" class="form-control border border-dark" placeholder="Confirme sua senha" required>
+            </div>
+
+            <!-- Botão -->
+            <div class="d-grid mb-3">
+                <button type="submit" class="btn btn-success">Cadastrar</button>
+            </div>
+
+            <!-- Link para login -->
+            <div class="text-center">
+                <span>Já tem uma conta?</span>
+                <a href="/login/" class="text-decoration-none">Entrar</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

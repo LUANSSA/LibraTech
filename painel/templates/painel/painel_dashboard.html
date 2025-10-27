@@ -10,13 +10,6 @@ Dashboard
     <!-- Título da página -->
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Dashboard</h2>
-        <div class="d-none d-md-block">
-            <div class="card p-2 text-center shadow" style="width: 180px;">
-                <div class="fw-bold">{{ user.username }}</div>
-                <small>{{ user.email }}</small>
-                <a href="/login/" class="btn btn-sm btn-outline-danger mt-2 w-100">Sair</a>
-            </div>
-        </div>
     </div>
 
     <!-- Cards de resumo -->
@@ -79,6 +72,22 @@ Dashboard
                 </div>
             </div>
         </div>
+
+        <div class="col-md-3 col-sm-6 mb-3">
+            <div class="card text-white bg-purple shadow h-100">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5 class="card-title">Usuários</h5>
+                        <h3>{{ total_usuarios }}</h3>
+                    </div>
+                    <div class="fs-1">👤</div>
+                </div>
+                <div class="card-footer text-end">
+                    <a href="{% url 'painel_usuarios_listar' %}" class="text-white text-decoration-none">Ver detalhes →</a>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <!-- Atalhos rápidos -->
@@ -133,7 +142,7 @@ Dashboard
                     <div class="fs-1 mb-2">👤</div>
                     <h5 class="card-title">{{ user.username }}</h5>
                     <p class="card-text">{{ user.email }}</p>
-                    <a href="/login/" class="btn btn-outline-danger btn-sm w-100">Sair</a>
+                    <a href="{% url 'painel_sair' %}" class="btn btn-outline-danger btn-sm w-100">Sair</a>
                 </div>
             </div>
         </div>
