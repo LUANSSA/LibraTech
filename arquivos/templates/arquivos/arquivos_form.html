@@ -1,0 +1,110 @@
+{% extends "core/base.html" %}
+
+{% block titulo_da_pagina %}
+Acervo - Arquivos
+{% endblock %}
+
+{% block conteudo %}
+<div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background-image: url('/static/images/sua-imagem.jpg'); background-size: cover; background-position: center; padding: 30px;">
+
+    <div style="width: 100%; max-width: 900px;">
+
+        {% if not arquivos.pk %}
+            <h2 class="text-center mb-4">📁 Cadastrar Arquivo</h2>
+            <p class="text-center mb-4">Preencha os campos abaixo para adicionar um novo arquivo ao acervo.</p>
+        {% else %}
+            <h2 class="text-center mb-4">📁 Editar Arquivo</h2>
+            <p class="text-center mb-4">Atualize as informações do arquivo conforme necessário.</p>
+        {% endif %}
+
+        <form method="POST" enctype="multipart/form-data" class="row g-3">
+            {% csrf_token %}
+
+            <!-- Linha 1 -->
+            <div class="col-md-6">
+                <label for="{{ form.titulo.id_for_label }}" class="form-label"><b>{{ form.titulo.label }}</b></label>
+                <input type="text" name="{{ form.titulo.name }}" id="{{ form.titulo.id_for_label }}" value="{{ form.titulo.value|default_if_none:'' }}" class="form-control border border-dark">
+            </div>
+            <div class="col-md-6">
+                
+            <label for="{{ form.tipo_arquivo.id_for_label }}" class="form-label"><b>{{ form.tipo_arquivo.label }}</b></label>
+            <select name="{{ form.tipo_arquivo.name }}" id="{{ form.tipo_arquivo.id_for_label }}" class="form-control border border-dark" required>
+                <option value="PDF" {% if form.tipo_arquivo.value == "PDF" %}selected{% endif %}>PDF</option>
+                <option value="DOCX" {% if form.tipo_arquivo.value == "DOCX" %}selected{% endif %}>Documento Word (.docx)</option>
+            </select>
+        </div>
+
+            <!-- Linha 2 -->
+            <div class="col-md-6">
+                <label for="{{ form.colecao.id_for_label }}" class="form-label"><b>{{ form.colecao.label }}</b></label>
+                <input type="text" name="{{ form.colecao.name }}" id="{{ form.colecao.id_for_label }}" value="{{ form.colecao.value|default_if_none:'' }}" class="form-control border border-dark">
+            </div>
+            <div class="col-md-6">
+                <label for="{{ form.autor.id_for_label }}" class="form-label"><b>{{ form.autor.label }}</b></label>
+                <input type="text" name="{{ form.autor.name }}" id="{{ form.autor.id_for_label }}" value="{{ form.autor.value|default_if_none:'' }}" class="form-control border border-dark">
+            </div>
+
+            <!-- Linha 3 -->
+            <div class="col-md-6">
+                <label for="{{ form.arquivo.id_for_label }}" class="form-label"><b>{{ form.arquivo.label }}</b></label>
+                <input type="file" name="{{ form.arquivo.name }}" id="{{ form.arquivo.id_for_label }}" class="form-control border border-dark">
+            </div>
+            <div class="col-md-6">
+                <label for="{{ form.assunto.id_for_label }}" class="form-label"><b>{{ form.assunto.label }}</b></label>
+                <input type="text" name="{{ form.assunto.name }}" id="{{ form.assunto.id_for_label }}" value="{{ form.assunto.value|default_if_none:'' }}" class="form-control border border-dark">
+            </div>
+
+            <!-- Linha 4 -->
+            <div class="col-md-6">
+                <label for="{{ form.area_acervo.id_for_label }}" class="form-label"><b>{{ form.area_acervo.label }}</b></label>
+                <input type="text" name="{{ form.area_acervo.name }}" id="{{ form.area_acervo.id_for_label }}" value="{{ form.area_acervo.value|default_if_none:'' }}" class="form-control border border-dark">
+            </div>
+            <div class="col-md-6">
+                <label for="{{ form.chamada.id_for_label }}" class="form-label"><b>{{ form.chamada.label }}</b></label>
+                <input type="text" name="{{ form.chamada.name }}" id="{{ form.chamada.id_for_label }}" value="{{ form.chamada.value|default_if_none:'' }}" class="form-control border border-dark">
+            </div>
+
+            <!-- Linha 5 -->
+            <div class="col-md-6">
+                <label for="{{ form.num_tombamento.id_for_label }}" class="form-label"><b>{{ form.num_tombamento.label }}</b></label>
+                <input type="text" name="{{ form.num_tombamento.name }}" id="{{ form.num_tombamento.id_for_label }}" value="{{ form.num_tombamento.value|default_if_none:'' }}" class="form-control border border-dark">
+            </div>
+            <div class="col-md-6">
+                <label for="{{ form.data_publicacao.id_for_label }}" class="form-label"><b>{{ form.data_publicacao.label }}</b></label>
+                <input type="date" name="{{ form.data_publicacao.name }}" id="{{ form.data_publicacao.id_for_label }}" value="{{ form.data_publicacao.value|date:'Y-m-d'|default_if_none:'' }}" class="form-control border border-dark">
+            </div>
+
+            <!-- Linha 6 -->
+            <div class="col-12">
+                <label for="{{ form.descricao.id_for_label }}" class="form-label"><b>{{ form.descricao.label }}</b></label>
+                <textarea name="{{ form.descricao.name }}" id="{{ form.descricao.id_for_label }}" class="form-control border border-dark" rows="3">{{ form.descricao.value|default_if_none:'' }}</textarea>
+            </div>
+
+            <div class="col-12">
+                <label for="{{ form.referencia_ABNT.id_for_label }}" class="form-label"><b>{{ form.referencia_ABNT.label }}</b></label>
+                <textarea name="{{ form.referencia_ABNT.name }}" id="{{ form.referencia_ABNT.id_for_label }}" class="form-control border border-dark" rows="3">{{ form.referencia_ABNT.value|default_if_none:'' }}</textarea>
+            </div>
+
+            <div class="col-12">
+                <label for="{{ form.nota.id_for_label }}" class="form-label"><b>{{ form.nota.label }}</b></label>
+                <textarea name="{{ form.nota.name }}" id="{{ form.nota.id_for_label }}" class="form-control border border-dark" rows="3">{{ form.nota.value|default_if_none:'' }}</textarea>
+            </div>
+
+            <!-- Checkboxes -->
+            <div class="col-md-6">
+                <div class="form-check">
+                    <input type="checkbox" name="{{ form.disponibilidade.name }}" id="{{ form.disponibilidade.id_for_label }}" class="form-check-input" {% if form.disponibilidade.value %}checked{% endif %}>
+                    <label for="{{ form.disponibilidade.id_for_label }}" class="form-check-label">{{ form.disponibilidade.label }}</label>
+                </div>
+            </div>
+
+            <!-- Botões -->
+            <div class="col-12 text-center mt-4">
+                <button type="submit" class="btn btn-success px-4">Salvar</button>
+                <a href="javascript:history.back()" class="btn btn-secondary px-4">Cancelar</a>
+            </div>
+
+        </form>
+    </div>
+</div>
+{% endblock conteudo %}

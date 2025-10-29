@@ -51,7 +51,9 @@ class ArquivosCadastrarView(CreateView):
     context_object_name = "arquivos"
     # Formulário
     fields = [
-        "titulo", "descricao", "tipo_arquivo", "arquivo_upload"
+        "titulo", "descricao", "colecao", "tipo_arquivo", "arquivo", "autor",
+        "data_publicacao", "assunto", "area_acervo", "chamada", "num_tombamento",
+        "referencia_ABNT", "nota", "disponibilidade",
     ]
     # Redirecionar após cadastro
     success_url = "/painel/arquivos/"
