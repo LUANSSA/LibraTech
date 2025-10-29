@@ -28,15 +28,18 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     # Painel (dashboard e controle de usuários personalizado)
+
+    # Painel Dashboard
+    path('painel/dashboard/usuarios/', PainlDashboardUsuariosListarView.as_view(), name="painel_dashboard_usuarios_listar"),
+    path('painel/dashboard/usuarios/form', PainlDashboardUsuariosListarView.as_view(), name="painel_dashboard_usuarios_form"),
+    path('painel/dashboard', PainelDashboardView.as_view(), name="painel_dashboard"),
+
+    # Painel Usuários
+    path('painel/usuarios/form/', PainelUsuariosCadastrarView.as_view(), name="painel_usuarios_cadastrar"),
     path('login/', PainelEntrarView.as_view(), name="painel_entrar"),
     path('logout/', PainelSairView.as_view(), name='painel_sair'),
     path('recuperar-senha/', PainelRecuperarSenhaView.as_view(), name="painel_recuperar_senha"),
     path('redefinir-senha/', PainelRedefinirSenhaView.as_view(), name="painel_redefinir_senha"),
-    path('painel/dashboard', PainelDashboardView.as_view(), name="painel_dashboard"),
-
-    # Painel Usuários
-    path('painel/usuarios/', PainelUsuariosListarView.as_view(), name="painel_usuarios_listar"),
-    path('painel/usuarios/form/', PainelUsuariosCadastrarView.as_view(), name="painel_usuarios_cadastrar"),
 
     path("", Home),
 
