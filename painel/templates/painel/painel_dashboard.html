@@ -83,7 +83,7 @@ Dashboard
                         <h6 class="card-title mb-1">Usuários</h6>
                         <h4 class="mb-0">{{ total_usuarios }}</h4>
                     </div>
-                    <div class="fs-3">👤</div>
+                    <div class="fs-3">🧑‍💻</div>
                 </div>
                 <div class="card-footer text-end py-1">
                     <a href="{% url 'painel_dashboard_usuarios_listar' %}" class="text-white text-decoration-none small">Ver detalhes →</a>
@@ -101,6 +101,7 @@ Dashboard
             <a href="{% url 'periodicos_cadastrar' %}" class="btn btn-primary btn-sm">Cadastrar Periódico</a>
             <a href="{% url 'revistas_cadastrar' %}" class="btn btn-warning btn-sm">Cadastrar Revista</a>
             <a href="{% url 'arquivos_cadastrar' %}" class="btn btn-secondary btn-sm">Cadastrar Arquivo</a>
+            <a href="{% url 'painel_dashboard_usuarios_cadastrar' %}" class="btn bg-purple btn-sm">Cadastrar Usuário</a>
         </div>
     </div>
 
@@ -142,7 +143,7 @@ Dashboard
         <div class="col-lg-4 mb-4">
             <div class="card shadow text-center">
                 <div class="card-body">
-                    <div class="fs-1 mb-2">👤</div>
+                    <div class="fs-1 mb-2">🧑‍💻</div>
                     <h5 class="card-title">{{ user.username }}</h5>
                     <p class="card-text">{{ user.email }}</p>
                     <a href="{% url 'painel_sair' %}" class="btn btn-outline-danger btn-sm w-100">Sair</a>

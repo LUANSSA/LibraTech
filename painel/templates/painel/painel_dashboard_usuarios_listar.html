@@ -9,15 +9,14 @@ Dashboard – Usuários
 
     <!-- Título da página -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>👤 Dashboard – Usuários</h2>
-        <a href="{% url 'painel_usuarios_cadastrar' %}" class="btn btn-success btn-sm">+ Cadastrar Usuário</a>
+        <h2>🧑‍💻 Dashboard – Usuários</h2>
     </div>
 
     <!-- Ações rápidas -->
     <div class="mb-4">
         <h5>Ações rápidas</h5>
         <div class="d-flex flex-wrap gap-2">
-            <a href="{% url 'painel_usuarios_cadastrar' %}" class="btn btn-success btn-sm">Cadastrar Usuário</a>
+            <a href="{% url 'painel_dashboard_usuarios_cadastrar' %}" class="btn btn-success btn-sm">Cadastrar Usuário</a>
         </div>
     </div>
 
@@ -39,19 +38,19 @@ Dashboard – Usuários
                             </tr>
                         </thead>
                         <tbody>
-                            {% for u in usuarios %}
+                            {% for usuario in usuarios %}
                             <tr>
-                                <td>{{ u.username }}</td>
-                                <td>{{ u.email }}</td>
+                                <td>{{ usuario.username }}</td>
+                                <td>{{ usuario.email }}</td>
                                 <td>
-                                    {% for g in u.groups.all %}
+                                    {% for g in usuario.groups.all %}
                                         <span class="badge bg-primary">{{ g.name }}</span>
                                     {% empty %}
                                         <span class="text-muted">Sem grupo</span>
                                     {% endfor %}
                                 </td>
                                 <td>
-                                    <a href="" class="btn btn-sm btn-warning">Alterar</a>
+                                    <a href="{% url "painel_dashboard_usuarios_alterar" usuario.id %}" class="btn btn-sm btn-warning">Alterar</a>
                                 </td>
                             </tr>
                             {% empty %}
