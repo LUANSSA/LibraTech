@@ -27,21 +27,26 @@ from painel.views import *
 urlpatterns = [
 
     path('admin/', admin.site.urls),
+    
+    path("", Home),
+
+    
     # Painel (dashboard e controle de usuários personalizado)
 
     # Painel Dashboard
     path('painel/dashboard/usuarios/', PainlDashboardUsuariosListarView.as_view(), name="painel_dashboard_usuarios_listar"),
-    path('painel/dashboard/usuarios/form', PainlDashboardUsuariosListarView.as_view(), name="painel_dashboard_usuarios_form"),
+    path('painel/dashboard/usuarios/form', PainelDashboardUsuariosCadastrarView.as_view(), name="painel_dashboard_usuarios_cadastrar"),
+    path('painel/dashboard/usuarios/form/<int:pk>/', PainelDashboardUsuariosAlterarView.as_view(), name="painel_dashboard_usuarios_alterar"),
+    # path("painel/arquivos/excluir/<int:pk>/", ArquivosExcluirView.as_view(), name="arquivos_excluir"),
     path('painel/dashboard', PainelDashboardView.as_view(), name="painel_dashboard"),
 
-    # Painel Usuários
-    path('painel/usuarios/form/', PainelUsuariosCadastrarView.as_view(), name="painel_usuarios_cadastrar"),
-    path('login/', PainelEntrarView.as_view(), name="painel_entrar"),
     path('logout/', PainelSairView.as_view(), name='painel_sair'),
-    path('recuperar-senha/', PainelRecuperarSenhaView.as_view(), name="painel_recuperar_senha"),
-    path('redefinir-senha/', PainelRedefinirSenhaView.as_view(), name="painel_redefinir_senha"),
-
-    path("", Home),
+    
+    # Painel Site
+    path('usuarios/form/', PainelSiteUsuariosCadastrarView.as_view(), name="painel_site_usuarios_form"),
+    path('login/', PainelSiteEntrarView.as_view(), name="painel_site_entrar"),
+    path('recuperar-senha/', PainelSiteRecuperarSenhaView.as_view(), name="painel_site_recuperar_senha"),
+    path('redefinir-senha/', PainelSiteRedefinirSenhaView.as_view(), name="painel_site_redefinir_senha"),
 
    # Arquivos
     path("painel/arquivos/", ArquivosListarView.as_view(), name="arquivos_listar"),

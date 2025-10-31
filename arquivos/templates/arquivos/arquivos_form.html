@@ -100,10 +100,13 @@ Acervo - Arquivos
 
             <!-- Botões -->
             <div class="col-12 text-center mt-4">
-                <button type="submit" class="btn btn-success px-4">Salvar</button>
-                <a href="javascript:history.back()" class="btn btn-secondary px-4">Cancelar</a>
+                {% if not periodico.pk %}
+                    <button type="submit" class="btn btn-success btn-sm">Cadastrar</button>
+                {% else %}
+                    <button type="submit" class="btn btn-success btn-sm">Salvar</button>
+                {% endif %}
+                <a href="javascript:history.back()" class="btn btn-secondary btn-sm">Cancelar</a>
             </div>
-
         </form>
     </div>
 </div>
