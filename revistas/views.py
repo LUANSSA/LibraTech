@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -39,7 +40,9 @@ class RevistasDetalheView(DetailView):
     context_object_name = "revistas"
 
 # Cadastrar revista
-class RevistasCadastrarView(CreateView):
+class RevistasCadastrarView(LoginRequiredMixin, CreateView):
+    # Redireciona para login caso não esteja autenticado
+    login_url = "painel_site_entrar"
     # Modelo
     model = Revistas
     # Arquivo
@@ -57,7 +60,9 @@ class RevistasCadastrarView(CreateView):
     success_url = "/revistas"
 
 # Alterar revista
-class RevistasAlterarView(UpdateView):
+class RevistasAlterarView(LoginRequiredMixin, UpdateView):
+    # Redireciona para login caso não esteja autenticado
+    login_url = "painel_site_entrar"
     # Modelo
     model = Revistas
      # Arquivo
@@ -75,7 +80,9 @@ class RevistasAlterarView(UpdateView):
     success_url = "/revistas"
 
 # Excluir revista
-class RevistasExcluirView(DeleteView):
+class RevistasExcluirView(LoginRequiredMixin, DeleteView):
+    # Redireciona para login caso não esteja autenticado
+    login_url = "painel_site_entrar"
     # Modelo
     model = Revistas
     # Arquivo

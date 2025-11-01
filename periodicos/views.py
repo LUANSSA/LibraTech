@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.db.models import Q
 from .models import Periodicos
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Listar periódicos
 class PeriodicosListarView(ListView):
@@ -31,12 +32,14 @@ class PeriodicosDetalheView(DetailView):
     # Modelo
     model = Periodicos
     # Arquivo
-    template_name = "periodicos/periodicos_detalhe2.html"
+    template_name = "periodicos/periodicos_detalhe.html"
     # Nome do modelo
     context_object_name = "periodicos"
 
 # Cadastrar periódico
-class PeriodicosCadastrarView(CreateView):
+class PeriodicosCadastrarView(LoginRequiredMixin, CreateView):
+    # Redireciona para login caso não esteja autenticado
+    login_url = "painel_site_entrar"
     # Modelo
     model = Periodicos
     # Arquivo
@@ -52,7 +55,9 @@ class PeriodicosCadastrarView(CreateView):
     success_url = "/periodicos"
 
 # Alterar periódico
-class PeriodicosAlterarView(UpdateView):
+class PeriodicosAlterarView(LoginRequiredMixin, UpdateView):
+    # Redireciona para login caso não esteja autenticado
+    login_url = "painel_site_entrar"
     # Modelo
     model = Periodicos
     # Arquivo
@@ -67,7 +72,10 @@ class PeriodicosAlterarView(UpdateView):
     # Redirecionar
     success_url = "/periodicos"
 
-class PeriodicosExcluirView(DeleteView):
+# Excluir periódico
+class PeriodicosExcluirView(LoginRequiredMixin, DeleteView):
+    # Redireciona para login caso não esteja autenticado
+    login_url = "painel_site_entrar"
     # Modelo
     model = Periodicos
     # Arquivo

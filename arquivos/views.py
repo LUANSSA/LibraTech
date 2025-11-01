@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.db.models import Q
 from django.core.paginator import Paginator
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 # from models import Livros
 # Create your views here.
 
@@ -42,7 +44,9 @@ class ArquivosDetalheView(DetailView):
     context_object_name = "arquivos"
 
 # Cadastrar arquivo
-class ArquivosCadastrarView(CreateView):
+class ArquivosCadastrarView(LoginRequiredMixin, CreateView):
+    # Redireciona para login caso não esteja autenticado
+    login_url = "painel_site_entrar"
     # Modelo
     model = Arquivos
     # Arquivo
@@ -59,7 +63,9 @@ class ArquivosCadastrarView(CreateView):
     success_url = "/painel/arquivos/"
 
 # Alterar arquivo
-class ArquivosAlterarView(UpdateView):
+class ArquivosAlterarView(LoginRequiredMixin, UpdateView):
+    # Redireciona para login caso não esteja autenticado
+    login_url = "painel_site_entrar"
     # Modelo
     model = Arquivos
     # Arquivo
@@ -74,7 +80,9 @@ class ArquivosAlterarView(UpdateView):
     success_url = "/painel/arquivos/"
 
 # Excluir arquivo
-class ArquivosExcluirView(DeleteView):
+class ArquivosExcluirView(LoginRequiredMixin, DeleteView):
+    # Redireciona para login caso não esteja autenticado
+    login_url = "painel_site_entrar"
     # Modelo
     model = Arquivos
     # Arquivo
