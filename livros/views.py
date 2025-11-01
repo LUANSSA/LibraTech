@@ -40,12 +40,14 @@ class LivrosDetalheView(DetailView):
     # Modelo
     model = Livros
     # Arquivo
-    template_name = "livros/livros_detalhe2.html"
+    template_name = "livros/livros_detalhe.html"
     # Nome do modelo
     context_object_name = "livros"
 
 # Cadastrar livro
 class LivrosCadastrarView(LoginRequiredMixin, CreateView):
+    # Redireciona para login caso não esteja autenticado
+    login_url = "painel_site_entrar"
     # Modelo
     model = Livros
     # Arquivo
@@ -64,6 +66,8 @@ class LivrosCadastrarView(LoginRequiredMixin, CreateView):
 
 # Alterar livro
 class LivrosAlterarView(LoginRequiredMixin, UpdateView):
+    # Redireciona para login caso não esteja autenticado
+    login_url = "painel_site_entrar"
     # Modelo
     model = Livros
      # Arquivo
@@ -82,6 +86,8 @@ class LivrosAlterarView(LoginRequiredMixin, UpdateView):
 
 # Excluir livro
 class LivrosExcluirView(LoginRequiredMixin, DeleteView):
+    # Redireciona para login caso não esteja autenticado
+    login_url = "painel_site_entrar"
     # Modelo
     model = Livros
     # Arquivo

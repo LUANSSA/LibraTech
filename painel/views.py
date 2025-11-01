@@ -16,6 +16,7 @@ from arquivos.models import Arquivos
 
 # Painel dashboard
 class PainelDashboardView(LoginRequiredMixin, TemplateView):
+    # Redireciona para login caso não esteja autenticado
     login_url = "painel_site_entrar"
     template_name = "painel/painel_dashboard.html"
 
@@ -33,6 +34,7 @@ class PainelDashboardView(LoginRequiredMixin, TemplateView):
     
 # Painel dashboard cadastrar usuários
 class PainelDashboardUsuariosCadastrarView(LoginRequiredMixin, CreateView):
+    # Redireciona para login caso não esteja autenticado
     login_url = "painel_site_entrar"
     model = User
     form_class = PainelUsuariosCadastrarFrom
@@ -51,6 +53,7 @@ class PainelDashboardUsuariosCadastrarView(LoginRequiredMixin, CreateView):
     
 # Painel dashboard alterar usuários
 class PainelDashboardUsuariosAlterarView(LoginRequiredMixin, UpdateView):
+    # Redireciona para login caso não esteja autenticado
     login_url = "painel_site_entrar"
     model = User
     form_class = PainelUsuariosCadastrarFrom
@@ -68,6 +71,7 @@ class PainelDashboardUsuariosAlterarView(LoginRequiredMixin, UpdateView):
 
 # Painel dashboard listar usuários
 class PainlDashboardUsuariosListarView(LoginRequiredMixin, ListView):
+    # Redireciona para login caso não esteja autenticado
     login_url = "painel_site_entrar"
     model = User
     template_name = "painel/painel_dashboard_usuarios_listar.html"
@@ -82,7 +86,10 @@ class PainlDashboardUsuariosListarView(LoginRequiredMixin, ListView):
         return context
     
 # Painel sair da conta
-class PainelSairView(LogoutView):
+class PainelSairView(LoginRequiredMixin, LogoutView):
+    # Redireciona para login caso não esteja autenticado
+    login_url = "painel_site_entrar"
+    # Define para onde redirecionar após o logout
     next_page = "painel_site_entrar"  # redireciona para login após logout
 
 
