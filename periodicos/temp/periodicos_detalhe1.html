@@ -11,8 +11,9 @@ Acervo - Periódicos
 
     <h1 class="mb-4">{{ periodicos.titulo }}</h1>
 
-    <!-- Tabela para telas grandes -->
-    <div class="d-none d-md-block">
+    <!-- Informações Básicas -->
+    <h5 class="mt-4">Informações Básicas</h5>
+    <div class="d-none d-md-block table-responsive">
         <table class="table table-bordered table-hover">
             <tbody>
                 <tr>
@@ -33,6 +34,27 @@ Acervo - Periódicos
                     <th>Disponibilidade</th>
                     <td>{% if periodicos.disponibilidade %}Disponível{% else %}Indisponível{% endif %}</td>
                 </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Mobile -->
+    <div class="d-md-none">
+        <div class="card mb-2 p-2">
+            <p><strong>Subtítulo:</strong> {{ periodicos.sub_titulo }}</p>
+            <p><strong>ISSN:</strong> {{ periodicos.issn }}</p>
+            <p><strong>Frequência:</strong> {{ periodicos.frequencia }}</p>
+            <p><strong>Editora:</strong> {{ periodicos.editora }}</p>
+            <p><strong>Local:</strong> {{ periodicos.local }}</p>
+            <p><strong>Disponibilidade:</strong> {% if periodicos.disponibilidade %}Disponível{% else %}Indisponível{% endif %}</p>
+        </div>
+    </div>
+
+    <!-- Publicação & Identificação -->
+    <h5 class="mt-4">Publicação & Identificação</h5>
+    <div class="d-none d-md-block table-responsive">
+        <table class="table table-bordered table-hover">
+            <tbody>
                 <tr>
                     <th>Período de Início</th>
                     <td>{{ periodicos.periodo_inicio|date:"d/m/Y" }}</td>
@@ -45,12 +67,48 @@ Acervo - Periódicos
                     <th>Número</th>
                     <td>{{ periodicos.numero }}</td>
                 </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Mobile -->
+    <div class="d-md-none">
+        <div class="card mb-2 p-2">
+            <p><strong>Período de Início:</strong> {{ periodicos.periodo_inicio|date:"d/m/Y" }}</p>
+            <p><strong>Período de Fim:</strong> {{ periodicos.periodo_fim|date:"d/m/Y" }}</p>
+            <p><strong>Volume:</strong> {{ periodicos.volume }}</p>
+            <p><strong>Número:</strong> {{ periodicos.numero }}</p>
+        </div>
+    </div>
+
+    <!-- Assunto -->
+    <h5 class="mt-4">Assunto</h5>
+    <div class="d-none d-md-block table-responsive">
+        <table class="table table-bordered table-hover">
+            <tbody>
                 <tr>
                     <th>Assunto</th>
                     <td>{{ periodicos.assunto }}</td>
                     <th>Área do Acervo</th>
                     <td>{{ periodicos.area_acervo }}</td>
                 </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Mobile -->
+    <div class="d-md-none">
+        <div class="card mb-2 p-2">
+            <p><strong>Assunto:</strong> {{ periodicos.assunto }}</p>
+            <p><strong>Área do Acervo:</strong> {{ periodicos.area_acervo }}</p>
+        </div>
+    </div>
+
+    <!-- Notas & Referência -->
+    <h5 class="mt-4">Notas & Referência</h5>
+    <div class="d-none d-md-block table-responsive">
+        <table class="table table-bordered table-hover">
+            <tbody>
                 <tr>
                     <th>Referência ABNT</th>
                     <td colspan="3">{{ periodicos.referencia_ABNT }}</td>
@@ -59,6 +117,23 @@ Acervo - Periódicos
                     <th>Nota</th>
                     <td colspan="3">{{ periodicos.nota }}</td>
                 </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Mobile -->
+    <div class="d-md-none">
+        <div class="card mb-2 p-2">
+            <p><strong>Referência ABNT:</strong> {{ periodicos.referencia_ABNT }}</p>
+            <p><strong>Nota:</strong> {{ periodicos.nota }}</p>
+        </div>
+    </div>
+
+    <!-- Datas -->
+    <h5 class="mt-4">Datas</h5>
+    <div class="d-none d-md-block table-responsive">
+        <table class="table table-bordered table-hover">
+            <tbody>
                 <tr>
                     <th>Data de Cadastro</th>
                     <td>{{ periodicos.data_cadastro|date:"d/m/Y H:i" }}</td>
@@ -69,43 +144,22 @@ Acervo - Periódicos
         </table>
     </div>
 
-    <!-- Blocos para telas pequenas -->
+    <!-- Mobile -->
     <div class="d-md-none">
-        <div class="card mb-2 p-2">
-            <p><strong>Subtítulo:</strong> {{ periodicos.sub_titulo }}</p>
-            <p><strong>ISSN:</strong> {{ periodicos.issn }}</p>
-            <p><strong>Frequência:</strong> {{ periodicos.frequencia }}</p>
-            <p><strong>Editora:</strong> {{ periodicos.editora }}</p>
-            <p><strong>Local:</strong> {{ periodicos.local }}</p>
-            <p><strong>Disponibilidade:</strong> {% if periodicos.disponibilidade %}Disponível{% else %}Indisponível{% endif %}</p>
-        </div>
-        <div class="card mb-2 p-2">
-            <p><strong>Período de Início:</strong> {{ periodicos.periodo_inicio|date:"d/m/Y" }}</p>
-            <p><strong>Período de Fim:</strong> {{ periodicos.periodo_fim|date:"d/m/Y" }}</p>
-            <p><strong>Volume:</strong> {{ periodicos.volume }}</p>
-            <p><strong>Número:</strong> {{ periodicos.numero }}</p>
-        </div>
-        <div class="card mb-2 p-2">
-            <p><strong>Assunto:</strong> {{ periodicos.assunto }}</p>
-            <p><strong>Área do Acervo:</strong> {{ periodicos.area_acervo }}</p>
-            <p><strong>Referência ABNT:</strong> {{ periodicos.referencia_ABNT }}</p>
-            <p><strong>Nota:</strong> {{ periodicos.nota }}</p>
-        </div>
         <div class="card mb-2 p-2">
             <p><strong>Data de Cadastro:</strong> {{ periodicos.data_cadastro|date:"d/m/Y H:i" }}</p>
             <p><strong>Última Atualização:</strong> {{ periodicos.data_atualizacao|date:"d/m/Y H:i" }}</p>
         </div>
     </div>
 
+    <!-- Botões -->
     <div class="mt-4">
         <a href="javascript:history.back()" class="btn btn-secondary btn-sm">Voltar</a>
         {% if user.is_authenticated %}
             <a href="{% url 'periodicos_alterar' periodicos.id %}" class="btn btn-success btn-sm">Editar</a>
         {% endif %}
     </div>
-    </div>
 
 </div>
-
 
 {% endblock %}
