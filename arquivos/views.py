@@ -4,6 +4,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 
 # from models import Livros
 # Create your views here.
@@ -59,8 +60,10 @@ class ArquivosCadastrarView(LoginRequiredMixin, CreateView):
         "data_publicacao", "assunto", "area_acervo", "chamada", "num_tombamento",
         "referencia_ABNT", "nota", "disponibilidade",
     ]
-    # Redirecionar após cadastro
-    success_url = "/painel/arquivos/"
+
+    # Redirecionar
+    def get_success_url(self):
+        return reverse_lazy("arquivos_listar")
 
 # Alterar arquivo
 class ArquivosAlterarView(LoginRequiredMixin, UpdateView):
@@ -76,8 +79,10 @@ class ArquivosAlterarView(LoginRequiredMixin, UpdateView):
     fields = [
         "titulo", "descricao", "tipo_arquivo", "arquivo_upload"
     ]
-    # Redirecionar após alteração
-    success_url = "/painel/arquivos/"
+
+    # Redirecionar
+    def get_success_url(self):
+        return reverse_lazy("arquivos_listar")
 
 # Excluir arquivo
 class ArquivosExcluirView(LoginRequiredMixin, DeleteView):
@@ -89,7 +94,9 @@ class ArquivosExcluirView(LoginRequiredMixin, DeleteView):
     template_name = "arquivos/arquivos_confirm_delete.html"
     # Nome do modelo
     context_object_name = "arquivos"
-    # Redirecionar após exclusão
-    success_url = "/painel/arquivos/"
+    
+    # Redirecionar
+    def get_success_url(self):
+        return reverse_lazy("arquivos_listar")
 
 

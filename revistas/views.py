@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 
 # Create your views here.
 
@@ -56,8 +57,10 @@ class RevistasCadastrarView(LoginRequiredMixin, CreateView):
         "colecao", "assunto", "area_acervo", "chamada", "num_tombamento",
         "descricao", "referencia_ABNT", "nota", "disponibilidade"
     ]
-    # Redirecionamentp
-    success_url = "/revistas"
+
+    # Redirecionar
+    def get_success_url(self):
+        return reverse_lazy("revistas_listar")
 
 # Alterar revista
 class RevistasAlterarView(LoginRequiredMixin, UpdateView):
@@ -76,8 +79,10 @@ class RevistasAlterarView(LoginRequiredMixin, UpdateView):
         "colecao", "assunto", "area_acervo", "chamada", "num_tombamento",
         "descricao", "referencia_ABNT", "nota", "disponibilidade"
     ]
+
     # Redirecionar
-    success_url = "/revistas"
+    def get_success_url(self):
+        return reverse_lazy("revistas_listar")
 
 # Excluir revista
 class RevistasExcluirView(LoginRequiredMixin, DeleteView):
@@ -89,5 +94,7 @@ class RevistasExcluirView(LoginRequiredMixin, DeleteView):
     template_name = "revistas/revistas_excluir.html"
     # Nome do modelo
     context_object_name = "revistas"
+    
     # Redirecionar
-    success_url = "/revistas"
+    def get_success_url(self):
+        return reverse_lazy("revistas_listar")

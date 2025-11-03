@@ -3,6 +3,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.db.models import Q
 from .models import Periodicos
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 
 # Listar periódicos
 class PeriodicosListarView(ListView):
@@ -51,8 +52,10 @@ class PeriodicosCadastrarView(LoginRequiredMixin, CreateView):
         "volume", "numero", "editora", "local", "assunto", "area_acervo",
         "referencia_ABNT", "nota", "disponibilidade"
     ]
+
     # Redirecionar
-    success_url = "/periodicos"
+    def get_success_url(self):
+        return reverse_lazy("periodicos_listar")
 
 # Alterar periódico
 class PeriodicosAlterarView(LoginRequiredMixin, UpdateView):
@@ -69,8 +72,10 @@ class PeriodicosAlterarView(LoginRequiredMixin, UpdateView):
         "volume", "numero", "editora", "local", "assunto", "area_acervo",
         "referencia_ABNT", "nota", "disponibilidade"
     ]
+
     # Redirecionar
-    success_url = "/periodicos"
+    def get_success_url(self):
+        return reverse_lazy("periodicos_listar")
 
 # Excluir periódico
 class PeriodicosExcluirView(LoginRequiredMixin, DeleteView):
@@ -82,5 +87,7 @@ class PeriodicosExcluirView(LoginRequiredMixin, DeleteView):
     template_name = "periodicos/periodicos_excluir.html"
     # Nome do modelo
     context_object_name = "periodicos"
+    
     # Redirecionar
-    success_url = "/periodicos"
+    def get_success_url(self):
+        return reverse_lazy("periodicos_listar")

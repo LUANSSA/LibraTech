@@ -4,6 +4,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.db.models import Q
 from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
 
 # from models import Livros
 # Create your views here.
@@ -62,8 +63,10 @@ class LivrosCadastrarView(LoginRequiredMixin, CreateView):
         "volume", "tomo", "chamada", "num_tombamento", "assunto",
         "area_acervo", "referencia_ABNT", "nota", "disponibilidade"
     ]
+
     # Redirecionar
-    success_url = "/livros"
+    def get_success_url(self):
+        return reverse_lazy("livros_listar")
 
 # Alterar livro
 class LivrosAlterarView(LoginRequiredMixin, UpdateView):
@@ -82,8 +85,10 @@ class LivrosAlterarView(LoginRequiredMixin, UpdateView):
         "volume", "tomo", "chamada", "num_tombamento", "assunto",
         "area_acervo", "referencia_ABNT", "nota", "disponibilidade"
     ]
+
     # Redirecionar
-    success_url = "/livros"
+    def get_success_url(self):
+        return reverse_lazy("livros_listar")
 
 # Excluir livro
 class LivrosExcluirView(LoginRequiredMixin, DeleteView):
@@ -96,4 +101,6 @@ class LivrosExcluirView(LoginRequiredMixin, DeleteView):
     # Nome do modelo
     context_object_name = "livros"
     # Redirecionar
-    success_url = "/livros"
+    # Redirecionar
+    def get_success_url(self):
+        return reverse_lazy("livros_listar")

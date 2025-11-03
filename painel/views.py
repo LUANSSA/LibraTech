@@ -113,7 +113,7 @@ class PainelSiteEntrarView(LoginView):
     template_name = "painel/painel_site_entrar.html"
     redirect_authenticated_user = True  # já redireciona usuários logados automaticamente
 
-    # Redireciona para página de dashboard
+    # Redirecionar
     def get_success_url(self):
         return reverse_lazy("painel_dashboard")
 
@@ -126,9 +126,15 @@ class PainelSiteEntrarView(LoginView):
 class PainelSiteRecuperarSenhaView(PasswordResetView):
     template_name = "painel/painel_site_recuperar_senha.html"
     email_template_name = "painel/emails/reset_password_email.html"
-    success_url = reverse_lazy("painel_site_entrar")
+
+    # Redirecionar
+    def get_success_url(self):
+        return reverse_lazy("painel_site_entrar")
 
 # Painel site redefinir senha (após o link enviado por e-mail)
 class PainelSiteRedefinirSenhaView(LoginView):
     template_name = "painel/painel_redefinir_senha.html"
-    success_url = reverse_lazy("painel_site_entrar")
+    
+    # Redirecionar
+    def get_success_url(self):
+        return reverse_lazy("painel_site_entrar")
