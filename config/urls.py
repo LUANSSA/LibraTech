@@ -28,7 +28,7 @@ urlpatterns = [
 
     path('admin/', admin.site.urls),
     
-    path("", Home),
+    path("", Home.as_view()),
 
     
     # Painel (dashboard e controle de usuários personalizado)
