@@ -32,7 +32,7 @@ class LivrosListarView(ListView):
             Q(area_acervo__icontains=search) |
             Q(assunto__icontains=search)
 
-        ).order_by("-id")
+        ).order_by("id")
 
         return queryset
     

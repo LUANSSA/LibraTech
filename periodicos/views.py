@@ -24,7 +24,7 @@ class PeriodicosListarView(ListView):
             Q(sub_titulo__icontains=search) |
             Q(assunto__icontains=search) |
             Q(area_acervo__icontains=search)
-        ).order_by("-id")
+        ).order_by("id")
         return queryset
 
 # Detalhe de periódicos
