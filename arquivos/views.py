@@ -31,7 +31,7 @@ class ArquivosListarView(ListView):
             Q(descricao__icontains=search) |
             Q(tipo_arquivo__icontains=search)
 
-        )
+        ).order_by("-id")
         return queryset
     
 # Detalhe de arquivo
