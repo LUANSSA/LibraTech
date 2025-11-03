@@ -4,71 +4,98 @@
 Acervo - Revistas
 {% endblock %}
 
-{% comment %} Listagem de revistas {% endcomment %}
 {% block conteudo %}
-
-{% comment %} Botão de cadastro de revista {% endcomment %}
-<section class="d-grid justify-content-md-end">
-     {% if user.is_authenticated %}
-    <a href="{% url 'revistas_cadastrar' %}" type="button" class="btn btn-success btn-sm">Cadastrar Revista</a>
-    {% else %}
-    <span class="btn btn-success btn-sm invisible" aria-hidden="true">Cadastrar Revista</span>
-    {% endif %}
-</section>
-
-{% comment %} Captura a querystring de pesquisa {% endcomment %}
 {% with request.GET.search as querystring %}
-
-{% comment %} Título e pesquisa {% endcomment %}
 <div>
-    <h1 class="mb-4">🗞️ Revistas</h1>
-    <form class="d-flex" role="search">
+    <!-- Título e Cadastro -->
+    <section class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="mb-0">🗞️ Revistas</h1>
+        {% if user.is_authenticated %}
+            <a href="{% url 'revistas_cadastrar' %}" type="button" class="btn btn-success btn-sm">Cadastrar Revista</a>
+        {% else %}
+            <span class="btn btn-success btn-sm invisible" aria-hidden="true">Cadastrar Revista</span>
+        {% endif %}
+    </section>
+
+    <!-- Pesquisa -->
+    <form class="d-flex mb-4" role="search">
         <input class="form-control me-2" type="search" name="search" value="{{ querystring }}" placeholder="Buscar revistas..." aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Buscar</button>
     </form>
 </div>
 
-{% comment %} Tabela de revistas {% endcomment %}
-<table class="table table-hover">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Título</th>
-            <th scope="col">Volume</th>
-            <th scope="col">Número</th>
-            <th scope="col">Área do Acervo</th>
-            {% if user.is_authenticated %}
-                <th scope="col">Ações</th>
-            {% endif %}
-        </tr>
-    </thead>
-    <tbody>
-        {% for revista in revistas %}
+<!-- ======= LISTAGEM DESKTOP (Tabela) ======= -->
+<div class="d-none d-md-block">
+    <table class="table table-hover align-middle">
+        <thead>
             <tr>
-                <th scope="row">
-                    <a href="{% url 'revistas_detalhe' revista.id %}">{{ revista.id }}</a>
-                </th>
-                <td><a href="{% url 'revistas_detalhe' revista.id %}">{{ revista.titulo }}</a></td>
-                <td><a href="{% url 'revistas_detalhe' revista.id %}">{{ revista.area_acervo }}</a></td>
-                <td><a href="{% url 'revistas_detalhe' revista.id %}">{{ revista.num_tombamento }}</a></td>
-                <td><a href="{% url 'revistas_detalhe' revista.id %}">{{ revista.chamada }}</a></td>
+                <th scope="col">#</th>
+                <th scope="col">Título</th>
+                <th scope="col">Volume</th>
+                <th scope="col">Número</th>
+                <th scope="col">Área do Acervo</th>
                 {% if user.is_authenticated %}
-                    <td>
-                        <a href="{% url 'revistas_alterar' revista.id %}" class="btn btn-success btn-sm">Editar</a>
-                        <a href="{% url 'revistas_excluir' revista.id %}" class="btn btn-danger btn-sm">Excluir</a>
-                    </td>
+                    <th scope="col">Ações</th>
                 {% endif %}
             </tr>
-        {% empty %}
+        </thead>
+        <tbody>
+            {% for revista in revistas %}
+            <tr>
+                <th scope="row"><a href="{% url 'revistas_detalhe' revista.id %}">{{ revista.id }}</a></th>
+                <td><a href="{% url 'revistas_detalhe' revista.id %}">{{ revista.titulo }}</a></td>
+                <td>{{ revista.volume }}</td>
+                <td>{{ revista.numero }}</td>
+                <td>{{ revista.area_acervo }}</td>
+                {% if user.is_authenticated %}
+                <td>
+                    <a href="{% url 'revistas_alterar' revista.id %}" class="btn btn-success btn-sm">Editar</a>
+                    <a href="{% url 'revistas_excluir' revista.id %}" class="btn btn-danger btn-sm">Excluir</a>
+                </td>
+                {% endif %}
+            </tr>
+            {% empty %}
             <tr>
                 <td colspan="6" class="text-center">Nenhuma revista encontrada.</td>
             </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- ======= LISTAGEM MOBILE (Cards) ======= -->
+<div class="d-md-none">
+    <div class="row gy-3">
+        {% for revista in revistas %}
+        <div class="col-12">
+            <div class="card border-dark shadow-sm">
+                <div class="card-body p-3">
+                    <h5 class="card-title mb-2">
+                        <a href="{% url 'revistas_detalhe' revista.id %}" class="text-decoration-none fw-bold">
+                            {{ revista.titulo }}
+                        </a>
+                    </h5>
+                    <a href="{% url 'revistas_detalhe' revista.id %}">
+                        <p class="mb-1"><strong>Volume:</strong> {{ revista.volume }}</p>
+                        <p class="mb-1"><strong>Número:</strong> {{ revista.numero }}</p>
+                        <p class="mb-2"><strong>Área:</strong> {{ revista.area_acervo }}</p>
+                    </a>
+
+                    {% if user.is_authenticated %}
+                    <div class="d-flex justify-content-end gap-2">
+                        <a href="{% url 'revistas_alterar' revista.id %}" class="btn btn-success btn-sm">Editar</a>
+                        <a href="{% url 'revistas_excluir' revista.id %}" class="btn btn-danger btn-sm">Excluir</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center mt-4">Nenhuma revista encontrada.</p>
         {% endfor %}
-    </tbody>
-</table>
+    </div>
+</div>
 
-{% comment %} Paginação {% endcomment %}
 {% include "core/paginacao.html" %}
-
 {% endwith %}
 {% endblock conteudo %}
