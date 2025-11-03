@@ -97,7 +97,7 @@
             </div>
 
             <!-- Menu Botões Login e Registrar no canto direito / Logout -->
-            <ul class="navbar-nav ms-auto">
+            <ul class="d-flex flex-row navbar-nav ms-auto">
                 {% if user.is_authenticated %}
                     <li class="nav-item me-2">
                         <a class="btn btn-outline-light btn-sm" href="{% url 'painel_sair' %}">Sair</a>
