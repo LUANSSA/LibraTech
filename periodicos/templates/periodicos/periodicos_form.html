@@ -1,13 +1,13 @@
 {% extends "core/base.html" %}
 
 {% block titulo_da_pagina %}
-Acervo - Periódicos
+    Acervo - Periódicos
 {% endblock %}
 
 {% block conteudo %}
 <div class="d-flex justify-content-center align-items-center" style="min-height: 100vh; background-image: url('/static/images/sua-imagem.jpg'); background-size: cover; background-position: center; padding: 30px;">
-    
     <div style="width: 100%; max-width: 900px;">
+
         {% if not periodicos.pk %}
             <h2 class="text-center mb-4">📰 Cadastrar Periódico</h2>
             <p class="text-center mb-4">Preencha os campos abaixo para adicionar um novo periódico ao acervo.</p>
@@ -22,80 +22,120 @@ Acervo - Periódicos
             <!-- Linha 1 -->
             <div class="col-md-6">
                 <label for="{{ form.titulo.id_for_label }}" class="form-label"><b>{{ form.titulo.label }}</b></label>
-                <input type="text" name="{{ form.titulo.name }}" id="{{ form.titulo.id_for_label }}" value="{{ form.titulo.value|default_if_none:'' }}" class="form-control border border-dark">
+                <input type="text" name="{{ form.titulo.name }}" id="{{ form.titulo.id_for_label }}" value="{{ form.titulo.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Digite o título do periódico" {% if form.titulo.required %}required{% endif %}>
+                {% for error in form.titulo.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
             </div>
+
             <div class="col-md-6">
                 <label for="{{ form.sub_titulo.id_for_label }}" class="form-label"><b>{{ form.sub_titulo.label }}</b></label>
-                <input type="text" name="{{ form.sub_titulo.name }}" id="{{ form.sub_titulo.id_for_label }}" value="{{ form.sub_titulo.value|default_if_none:'' }}" class="form-control border border-dark">
+                <input type="text" name="{{ form.sub_titulo.name }}" id="{{ form.sub_titulo.id_for_label }}" value="{{ form.sub_titulo.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Digite o subtítulo do periódico" {% if form.sub_titulo.required %}required{% endif %}>
+                {% for error in form.sub_titulo.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
             </div>
 
             <!-- Linha 2 -->
             <div class="col-md-6">
                 <label for="{{ form.issn.id_for_label }}" class="form-label"><b>{{ form.issn.label }}</b></label>
-                <input type="text" name="{{ form.issn.name }}" id="{{ form.issn.id_for_label }}" value="{{ form.issn.value|default_if_none:'' }}" class="form-control border border-dark">
+                <input type="text" name="{{ form.issn.name }}" id="{{ form.issn.id_for_label }}" value="{{ form.issn.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Digite o ISSN" {% if form.issn.required %}required{% endif %}>
+                {% for error in form.issn.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
             </div>
+
             <div class="col-md-6">
                 <label for="{{ form.frequencia.id_for_label }}" class="form-label"><b>{{ form.frequencia.label }}</b></label>
-                <input type="text" name="{{ form.frequencia.name }}" id="{{ form.frequencia.id_for_label }}" value="{{ form.frequencia.value|default_if_none:'' }}" class="form-control border border-dark">
+                <input type="text" name="{{ form.frequencia.name }}" id="{{ form.frequencia.id_for_label }}" value="{{ form.frequencia.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Ex: Semanal, Mensal, Trimestral..." {% if form.frequencia.required %}required{% endif %}>
+                {% for error in form.frequencia.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
             </div>
 
             <!-- Linha 3 -->
             <div class="col-md-6">
                 <label for="{{ form.periodo_inicio.id_for_label }}" class="form-label"><b>{{ form.periodo_inicio.label }}</b></label>
-                <input type="date" name="{{ form.periodo_inicio.name }}" id="{{ form.periodo_inicio.id_for_label }}" value="{{ form.periodo_inicio.value|date:'Y-m-d'|default_if_none:'' }}" class="form-control border border-dark">
+                <input type="date" name="{{ form.periodo_inicio.name }}" id="{{ form.periodo_inicio.id_for_label }}" value="{{ form.periodo_inicio.value|date:'Y-m-d'|default_if_none:'' }}" class="form-control border border-dark" {% if form.periodo_inicio.required %}required{% endif %}>
+                {% for error in form.periodo_inicio.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
             </div>
+
             <div class="col-md-6">
                 <label for="{{ form.periodo_fim.id_for_label }}" class="form-label"><b>{{ form.periodo_fim.label }}</b></label>
-                <input type="date" name="{{ form.periodo_fim.name }}" id="{{ form.periodo_fim.id_for_label }}" value="{{ form.periodo_fim.value|date:'Y-m-d'|default_if_none:'' }}" class="form-control border border-dark">
+                <input type="date" name="{{ form.periodo_fim.name }}" id="{{ form.periodo_fim.id_for_label }}" value="{{ form.periodo_fim.value|date:'Y-m-d'|default_if_none:'' }}" class="form-control border border-dark" {% if form.periodo_fim.required %}required{% endif %}>
+                {% for error in form.periodo_fim.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
             </div>
 
             <!-- Linha 4 -->
             <div class="col-md-6">
                 <label for="{{ form.volume.id_for_label }}" class="form-label"><b>{{ form.volume.label }}</b></label>
-                <input type="text" name="{{ form.volume.name }}" id="{{ form.volume.id_for_label }}" value="{{ form.volume.value|default_if_none:'' }}" class="form-control border border-dark">
+                <input type="text" name="{{ form.volume.name }}" id="{{ form.volume.id_for_label }}" value="{{ form.volume.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Digite o volume" {% if form.volume.required %}required{% endif %}>
+                {% for error in form.volume.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
             </div>
+
             <div class="col-md-6">
                 <label for="{{ form.numero.id_for_label }}" class="form-label"><b>{{ form.numero.label }}</b></label>
-                <input type="text" name="{{ form.numero.name }}" id="{{ form.numero.id_for_label }}" value="{{ form.numero.value|default_if_none:'' }}" class="form-control border border-dark">
+                <input type="text" name="{{ form.numero.name }}" id="{{ form.numero.id_for_label }}" value="{{ form.numero.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Digite o número" {% if form.numero.required %}required{% endif %}>
+                {% for error in form.numero.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
             </div>
 
             <!-- Linha 5 -->
             <div class="col-md-6">
                 <label for="{{ form.editora.id_for_label }}" class="form-label"><b>{{ form.editora.label }}</b></label>
-                <input type="text" name="{{ form.editora.name }}" id="{{ form.editora.id_for_label }}" value="{{ form.editora.value|default_if_none:'' }}" class="form-control border border-dark">
+                <input type="text" name="{{ form.editora.name }}" id="{{ form.editora.id_for_label }}" value="{{ form.editora.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Digite a editora" {% if form.editora.required %}required{% endif %}>
+                {% for error in form.editora.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
             </div>
+
             <div class="col-md-6">
                 <label for="{{ form.local.id_for_label }}" class="form-label"><b>{{ form.local.label }}</b></label>
-                <input type="text" name="{{ form.local.name }}" id="{{ form.local.id_for_label }}" value="{{ form.local.value|default_if_none:'' }}" class="form-control border border-dark">
+                <input type="text" name="{{ form.local.name }}" id="{{ form.local.id_for_label }}" value="{{ form.local.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Digite o local de publicação" {% if form.local.required %}required{% endif %}>
+                {% for error in form.local.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
             </div>
 
             <!-- Linha 6 -->
             <div class="col-md-6">
-                <label for="{{ form.assunto.id_for_label }}" class="form-label"><b>{{ form.assunto.label }}</b></label>
-                <input type="text" name="{{ form.assunto.name }}" id="{{ form.assunto.id_for_label }}" value="{{ form.assunto.value|default_if_none:'' }}" class="form-control border border-dark">
+                <label for="{{ form.chamada.id_for_label }}" class="form-label"><b>{{ form.chamada.label }}</b></label>
+                <input type="text" name="{{ form.chamada.name }}" id="{{ form.chamada.id_for_label }}" value="{{ form.chamada.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Digite a chamada" {% if form.chamada.required %}required{% endif %}>
+                {% for error in form.chamada.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
             </div>
+
+            <div class="col-md-6">
+                <label for="{{ form.num_tombamento.id_for_label }}" class="form-label"><b>{{ form.num_tombamento.label }}</b></label>
+                <input type="text" name="{{ form.num_tombamento.name }}" id="{{ form.num_tombamento.id_for_label }}" value="{{ form.num_tombamento.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Digite o Nº de tombamento" {% if form.num_tombamento.required %}required{% endif %}>
+                {% for error in form.num_tombamento.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
+            </div>
+
+            <!-- Linha 7 -->
+            <div class="col-md-6">
+                <label for="{{ form.assunto.id_for_label }}" class="form-label"><b>{{ form.assunto.label }}</b></label>
+                <input type="text" name="{{ form.assunto.name }}" id="{{ form.assunto.id_for_label }}" value="{{ form.assunto.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Digite o assunto" {% if form.assunto.required %}required{% endif %}>
+                {% for error in form.assunto.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
+            </div>
+
             <div class="col-md-6">
                 <label for="{{ form.area_acervo.id_for_label }}" class="form-label"><b>{{ form.area_acervo.label }}</b></label>
-                <input type="text" name="{{ form.area_acervo.name }}" id="{{ form.area_acervo.id_for_label }}" value="{{ form.area_acervo.value|default_if_none:'' }}" class="form-control border border-dark">
+                <input type="text" name="{{ form.area_acervo.name }}" id="{{ form.area_acervo.id_for_label }}" value="{{ form.area_acervo.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Digite a área do acervo" {% if form.area_acervo.required %}required{% endif %}>
+                {% for error in form.area_acervo.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
             </div>
 
             <!-- Textareas -->
             <div class="col-12">
+                <label for="{{ form.descricao.id_for_label }}" class="form-label"><b>{{ form.descricao.label }}</b></label>
+                <textarea name="{{ form.descricao.name }}" id="{{ form.descricao.id_for_label }}" class="form-control border border-dark" rows="3" placeholder="Descreva brevemente o conteúdo do periódico">{{ form.descricao.value|default_if_none:'' }}</textarea>
+                {% for error in form.descricao.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
+            </div>
+
+            <div class="col-12">
                 <label for="{{ form.referencia_ABNT.id_for_label }}" class="form-label"><b>{{ form.referencia_ABNT.label }}</b></label>
-                <textarea name="{{ form.referencia_ABNT.name }}" id="{{ form.referencia_ABNT.id_for_label }}" class="form-control border border-dark" rows="3">{{ form.referencia_ABNT.value|default_if_none:'' }}</textarea>
+                <textarea name="{{ form.referencia_ABNT.name }}" id="{{ form.referencia_ABNT.id_for_label }}" class="form-control border border-dark" rows="3" placeholder="Digite a referência ABNT do periódico">{{ form.referencia_ABNT.value|default_if_none:'' }}</textarea>
+                {% for error in form.referencia_ABNT.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
             </div>
 
             <div class="col-12">
                 <label for="{{ form.nota.id_for_label }}" class="form-label"><b>{{ form.nota.label }}</b></label>
-                <textarea name="{{ form.nota.name }}" id="{{ form.nota.id_for_label }}" class="form-control border border-dark" rows="3">{{ form.nota.value|default_if_none:'' }}</textarea>
+                <textarea name="{{ form.nota.name }}" id="{{ form.nota.id_for_label }}" class="form-control border border-dark" rows="3" placeholder="Digite observações adicionais ou comentários">{{ form.nota.value|default_if_none:'' }}</textarea>
+                {% for error in form.nota.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
             </div>
 
             <!-- Checkbox -->
             <div class="col-12">
                 <div class="form-check">
                     <input type="checkbox" name="{{ form.disponibilidade.name }}" id="{{ form.disponibilidade.id_for_label }}" class="form-check-input" {% if form.disponibilidade.value %}checked{% endif %}>
-                    <label for="{{ form.disponibilidade.id_for_label }}" class="form-check-label">{{ form.disponibilidade.label }}</label>
+                    <label for="{{ form.disponibilidade.id_for_label }}" class="form-check-label"><b>{{ form.disponibilidade.label }}</b></label>
                 </div>
+                {% for error in form.disponibilidade.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
             </div>
 
             <!-- Botões -->
@@ -107,6 +147,7 @@ Acervo - Periódicos
                 {% endif %}
                 <a href="javascript:history.back()" class="btn btn-secondary btn-sm">Cancelar</a>
             </div>
+
         </form>
     </div>
 </div>

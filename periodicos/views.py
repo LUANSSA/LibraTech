@@ -49,8 +49,8 @@ class PeriodicosCadastrarView(LoginRequiredMixin, CreateView):
     context_object_name = "periodicos"
     fields = [
         "titulo", "sub_titulo", "issn", "frequencia", "periodo_inicio", "periodo_fim",
-        "volume", "numero", "editora", "local", "assunto", "area_acervo",
-        "referencia_ABNT", "nota", "disponibilidade"
+        "volume", "numero", "editora", "local", "assunto", "chamada", "num_tombamento", 
+        "area_acervo", "referencia_ABNT", "descricao", "nota", "disponibilidade"
     ]
 
     # Redirecionar
