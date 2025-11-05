@@ -5,8 +5,8 @@ from django.db import models
 
 class Revistas(models.Model):
     titulo = models.CharField("Título", max_length=300, null=False, blank=False)
-    sub_titulo = models.CharField("Subtítulo", max_length=300, null=True, blank=True)
-    issn = models.CharField("ISSN", max_length=20, unique=True, null=True, blank=True)
+    sub_titulo = models.CharField("Subtítulo", max_length=300, null=True, blank=False)
+    issn = models.CharField("ISSN", max_length=20, unique=True, null=True, blank=False)
     edicao = models.CharField("Edição", max_length=100, null=True, blank=True)
     volume = models.CharField("Volume", max_length=100, null=True, blank=True)
     numero = models.CharField("Número", max_length=100, null=True, blank=True)
