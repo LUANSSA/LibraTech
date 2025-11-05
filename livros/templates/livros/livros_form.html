@@ -67,7 +67,7 @@
 
                 <div class="col-md-4">
                     <label for="{{ form.mes_ano_publicacao.id_for_label }}" class="form-label"><b>{{ form.mes_ano_publicacao.label }}</b></label>
-                    <input type="date" name="{{ form.mes_ano_publicacao.name }}" id="{{ form.mes_ano_publicacao.id_for_label }}" value="{{ form.mes_ano_publicacao.value|date:'Y-m-d'|default_if_none:'' }}" class="form-control border border-dark" {% if form.mes_ano_publicacao.required %}required{% endif %} placeholder="Digite ano publicação do livro">
+                    <input type="date" name="{{ form.mes_ano_publicacao.name }}" id="{{ form.mes_ano_publicacao.id_for_label }}" value="{{ form.mes_ano_publicacao.value|date:'Y-m-d'|default_if_none:'' }}" class="form-control border border-dark" {% if form.mes_ano_publicacao.required %}required{% endif %}>
                     {% for error in form.mes_ano_publicacao.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
                 </div>
 
