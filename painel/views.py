@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView
 from django.contrib import messages
 from django.urls import reverse_lazy
-from .form import PainelUsuariosCadastrarFrom
+from .form import PainelUsuariosCadastrarFrom, PainelEntrarEmailForm
 
 # Models
 from django.contrib.auth.models import User
@@ -108,10 +108,11 @@ class PainelSiteUsuariosCadastrarView(CreateView):
         messages.success(self.request, "Cadastro realizado com sucesso! Faça login para continuar.")
         return response
 
-# Painel site login
+# Painel site Entrar
 class PainelSiteEntrarView(LoginView):
     template_name = "painel/painel_site_entrar.html"
     redirect_authenticated_user = True  # já redireciona usuários logados automaticamente
+    authentication_form = PainelEntrarEmailForm
 
     # Redirecionar
     def get_success_url(self):

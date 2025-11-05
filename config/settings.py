@@ -122,6 +122,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Autenticação por e-mail
+AUTHENTICATION_BACKENDS = [
+    'painel.backends.EmailAuthBackend',  # login com e-mail
+    'django.contrib.auth.backends.ModelBackend',  # login padrão (opcional)
+]
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
