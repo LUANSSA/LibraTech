@@ -30,8 +30,12 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", cast=bool, default="False")
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
-
 CSRF_TRUSTED_ORIGINS = config("CSRF_TRUSTED_ORIGINS").split(",")
+SECURE_PROXY_SSL_HEADER = config("SECURE_PROXY_SSL_HEADER").split(",")
+SESSION_COOKIE_SECURE = config("SESSION_COOKIE_SECURE")
+CSRF_COOKIE_SECURE = config("CSRF_COOKIE_SECURE")
+
+
 
 # Application definition
 
