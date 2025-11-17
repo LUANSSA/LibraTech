@@ -101,6 +101,5 @@ class LivrosExcluirView(LoginRequiredMixin, DeleteView):
     # Nome do modelo
     context_object_name = "livros"
     # Redirecionar
-    # Redirecionar
     def get_success_url(self):
         return reverse_lazy("livros_listar")

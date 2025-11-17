@@ -5,6 +5,7 @@ from django.db.models import Q
 from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
+import os
 
 # from models import Livros
 # Create your views here.
@@ -36,7 +37,7 @@ class ArquivosListarView(ListView):
         return queryset
     
 # Detalhe de arquivo
-class ArquivosDetalheView(DetailView):
+class ArquivosDetalheView(LoginRequiredMixin, DetailView):
     # Modelo
     model = Arquivos
     # Arquivo
@@ -77,7 +78,9 @@ class ArquivosAlterarView(LoginRequiredMixin, UpdateView):
     context_object_name = "arquivos"
     # Formulário
     fields = [
-        "titulo", "descricao", "tipo_arquivo", "arquivo_upload"
+        "titulo", "descricao", "colecao", "tipo_arquivo", "arquivo", "autor",
+        "data_publicacao", "assunto", "area_acervo", "chamada", "num_tombamento",
+        "referencia_ABNT", "nota", "disponibilidade",
     ]
 
     # Redirecionar
@@ -91,9 +94,23 @@ class ArquivosExcluirView(LoginRequiredMixin, DeleteView):
     # Modelo
     model = Arquivos
     # Arquivo
-    template_name = "arquivos/arquivos_confirm_delete.html"
+    template_name = "arquivos/arquivos_excluir.html"
     # Nome do modelo
     context_object_name = "arquivos"
+
+    
+    def delete(self, request, *args, **kwargs):
+        arquivo = self.get_object()
+
+         # 🔹 acessa o nome salvo no banco de dados:
+        print("Nome salvo no banco:", arquivo.titulo)
+
+        # 🔹 se quiser acessar o caminho do arquivo:
+        print("Caminho salvo:", arquivo.arquivo)
+
+        import sys
+        sys.exit("Abortado pelo usuário")
+    
     
     # Redirecionar
     def get_success_url(self):

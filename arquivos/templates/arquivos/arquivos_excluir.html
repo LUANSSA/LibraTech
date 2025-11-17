@@ -1,0 +1,18 @@
+{% extends "core/base.html" %}
+
+{% block titulo_da_pagina %}
+Excluir Arquivo
+{% endblock %}
+
+{% block conteudo %}
+    <h1>Excluir Arquivo</h1>
+
+    <p>Tem certeza que deseja excluir o arquivo <strong>{{ arquivos.titulo }}</strong>?</p>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+        <a href="javascript:history.back()" class="btn btn-secondary btn-sm">Cancelar</a>
+    </form>
+{% endblock %}

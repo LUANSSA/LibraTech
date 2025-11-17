@@ -21,7 +21,7 @@ def caminho_arquivo(instance, filename):
 
 class Arquivos(models.Model):
     titulo = models.CharField("Título", max_length=300, null=False, blank=False)
-    descricao = models.TextField("Descrição", null=True, blank=True)
+    descricao = models.TextField("Descrição", null=True, blank=False)
     colecao = models.CharField("Coleção", max_length=300, null=True, blank=True)
     tipo_arquivo = models.CharField("Tipo de Arquivo", max_length=100, null=False, blank=False)  # PDF, DOCX, JPG, etc.
     arquivo = models.FileField("Arquivo", upload_to=caminho_arquivo)
