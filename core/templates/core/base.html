@@ -1,9 +1,18 @@
 <!doctype html5>
 <html lang="pt-br">
-
+{% load static %}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Metatags Open Graph -->
+    <meta property="og:title" content="Biblioteca Digital - Colégio São Bento" />
+    <meta property="og:description" content="Encontre lviros, periódicos, revistas e arquivos" />
+    <meta property="og:url" content="https://salvadormarketing.com.br" />
+    <meta property="og:image" content="{% static 'img/logocolegio400x151.png' %}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Biblioteca Digital - Colégio São Bento" />
+    
     <title>{% block titulo_da_pagina %}{% endblock titulo_da_pagina%}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
