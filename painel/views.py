@@ -32,24 +32,25 @@ class PainelDashboardView(LoginRequiredMixin, TemplateView):
 
         return context
     
+
+    
 # Painel dashboard cadastrar usuários
 class PainelDashboardUsuariosCadastrarView(LoginRequiredMixin, CreateView):
-    # Redireciona para login caso não esteja autenticado
     login_url = "painel_site_entrar"
     model = User
+    # Define como deve funcionar a classe form
     form_class = PainelUsuariosCadastrarFrom
+    # Arquivo
     template_name = "painel/painel_dashboard_usuarios_form.html"
-    success_url = reverse_lazy("painel_site_entrar")
 
     def form_valid(self, form):
-        response = super().form_valid(form)
-        # adiciona a mensagem de sucesso
-        messages.success(self.request, "Cadastro realizado com sucesso! Faça login para continuar.")
-        return response
-    
-    def get_success_url(self):
-        # Define para onde redirecionar após o sucesso
-        return reverse_lazy("painel_dashboard_usuarios_listar")
+        user = form.save()
+        # Mensagem
+        messages.success(self.request,"Cadastro realizado com sucesso!")
+        return super().form_valid(form)
+
+    success_url = reverse_lazy("painel_dashboard_usuarios_listar")
+
     
 # Painel dashboard alterar usuários
 class PainelDashboardUsuariosAlterarView(LoginRequiredMixin, UpdateView):
