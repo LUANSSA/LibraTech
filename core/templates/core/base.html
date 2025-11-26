@@ -136,6 +136,13 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'revistas_listar' %}">Revistas</a>
                     </li>
+
+                    {% if user.is_authenticated %}
+                        {% comment %} Página de Usuários {% endcomment %}  
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'painel_dashboard_usuarios_listar' %}">Usuários</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
 
