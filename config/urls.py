@@ -37,7 +37,7 @@ urlpatterns = [
     path('painel/dashboard/usuarios/', PainlDashboardUsuariosListarView.as_view(), name="painel_dashboard_usuarios_listar"),
     path('painel/dashboard/usuarios/form', PainelDashboardUsuariosCadastrarView.as_view(), name="painel_dashboard_usuarios_cadastrar"),
     path('painel/dashboard/usuarios/form/<int:pk>/', PainelDashboardUsuariosAlterarView.as_view(), name="painel_dashboard_usuarios_alterar"),
-    # path("painel/arquivos/excluir/<int:pk>/", ArquivosExcluirView.as_view(), name="arquivos_excluir"),
+    path("painel/dashboard/excluir/<int:pk>/", PainelDashboardUsuariosExcluirView.as_view(), name="painel_dashboard_usuarios_excluir"),
     path('painel/dashboard', PainelDashboardView.as_view(), name="painel_dashboard"),
 
     path('logout/', PainelSairView.as_view(), name='painel_sair'),

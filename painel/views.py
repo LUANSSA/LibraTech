@@ -1,9 +1,10 @@
 from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordResetConfirmView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import TemplateView, ListView, CreateView, UpdateView
+from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.urls import reverse_lazy
 from .form import PainelUsuariosCadastrarFrom, PainelEntrarEmailForm
+from django.db.models import Q
 
 # Models
 from django.contrib.auth.models import User
@@ -69,22 +70,41 @@ class PainelDashboardUsuariosAlterarView(LoginRequiredMixin, UpdateView):
     def get_success_url(self):
         # Define para onde redirecionar após o sucesso
         return reverse_lazy("painel_dashboard_usuarios_listar")
-
+    
+# Painel dashboard excluir usuários
+class PainelDashboardUsuariosExcluirView(LoginRequiredMixin, DeleteView):
+    model = User
+    login_url = "painel_site_entrar"
+    success_url = reverse_lazy("painel_dashboard_usuarios_listar")
+    template_name = "painel/painel_dashboard_usuarios_excluir.html"
+     # Nome do modelo
+    context_object_name = "usuarios"
+ 
 # Painel dashboard listar usuários
 class PainlDashboardUsuariosListarView(LoginRequiredMixin, ListView):
     # Redireciona para login caso não esteja autenticado
     login_url = "painel_site_entrar"
+    # Modelo
     model = User
+    # Arquivo
     template_name = "painel/painel_dashboard_usuarios_listar.html"
+    # Nome do modelo
     context_object_name = "usuarios"
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        
-        # Total de cada entidade para os cards
-        context["total_usuarios"] = User.objects.count()
+     # Quantidade de itens por página
+    paginate_by = 8
 
-        return context
+    # Consulta com filtro
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        search = self.request.GET.get("search", "")
+        
+        queryset = queryset.filter(
+            Q(first_name__icontains=search) |
+            Q(email__icontains=search)
+
+        ).order_by("id")
+
+        return queryset
     
 # Painel sair da conta
 class PainelSairView(LoginRequiredMixin, LogoutView):
