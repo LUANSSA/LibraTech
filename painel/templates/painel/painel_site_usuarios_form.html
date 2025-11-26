@@ -5,41 +5,93 @@ Cadastro de Usuário
 {% endblock %}
 
 {% block conteudo %}
-<div class="d-flex justify-content-center align-items-center" style="height: 100vh; background-image: url('/static/images/sua-imagem.jpg'); background-size: cover; background-position: center;">
-    <div class="card p-4 shadow" style="width: 100%; max-width: 400px; background: rgba(255, 255, 255, 0.9);">
-        
-        <h2 class="text-center mb-4">Crie sua conta</h2>
-        <p class="text-center mb-4">Preencha os campos abaixo para se cadastrar.</p>
+
+<!-- Título + descrição (seguindo padrão da home/login) -->
+<div class="text-center mt-4 mb-4">
+    <h1 class="fw-bold mb-3">Criar Conta</h1>
+    <p class="lead text-muted">Preencha os campos para acessar todos os recursos da biblioteca.</p>
+</div>
+
+<!-- Área com fundo somente no formulário -->
+<div class="d-flex justify-content-center"
+     style="background-image: url('/static/images/sua-imagem.jpg');
+            background-size: cover;
+            background-position: center;
+            padding: 40px 0;">
+
+    <div class="card p-4 shadow"
+         style="width: 100%; max-width: 400px; background: rgba(255, 255, 255, 0.9);">
+
+        <h2 class="text-center mb-3">Cadastro</h2>
 
         <form method="POST">
             {% csrf_token %}
 
             <!-- Nome -->
             <div class="mb-3">
-                <label for="{{ form.nome_completo.id_for_label }}" class="form-label">{{ form.nome_completo.label }}</label>
-                <input type="text" name="{{ form.nome_completo.name }}" id="{{ form.nome_completo.id_for_label }}" value="{{ form.nome_completo.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Digite seu nome completo" pattern="[A-Za-zÀ-ÿ\s]{3,}" required>
-                {% for error in form.nome_completo.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
+                <label for="{{ form.nome_completo.id_for_label }}" class="form-label">
+                    {{ form.nome_completo.label }}
+                </label>
+                <input type="text" 
+                       name="{{ form.nome_completo.name }}" 
+                       id="{{ form.nome_completo.id_for_label }}" 
+                       value="{{ form.nome_completo.value|default_if_none:'' }}" 
+                       class="form-control border border-dark"
+                       placeholder="Digite seu nome completo"
+                       pattern="[A-Za-zÀ-ÿ\s]{3,}" 
+                       required>
+                {% for error in form.nome_completo.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
             </div>
 
             <!-- E-mail -->
             <div class="mb-3">
-                <label for="{{ form.email.id_for_label }}" class="form-label">{{ form.email.label }}</label>
-                <input type="email" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" value="{{ form.email.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Digite seu e-mail" required>
-                {% for error in form.email.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
+                <label for="{{ form.email.id_for_label }}" class="form-label">
+                    {{ form.email.label }}
+                </label>
+                <input type="email" 
+                       name="{{ form.email.name }}" 
+                       id="{{ form.email.id_for_label }}"
+                       value="{{ form.email.value|default_if_none:'' }}" 
+                       class="form-control border border-dark"
+                       placeholder="Digite seu e-mail"
+                       required>
+                {% for error in form.email.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
             </div>
 
             <!-- Senha -->
             <div class="mb-3">
-                <label for="{{ form.password1.id_for_label }}" class="form-label">{{ form.password1.label }}</label>
-                <input type="password" name="{{ form.password1.name }}" id="{{ form.password1.id_for_label }}" class="form-control border border-dark" placeholder="Digite uma senha" required>
-                {% for error in form.password1.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
+                <label for="{{ form.password1.id_for_label }}" class="form-label">
+                    {{ form.password1.label }}
+                </label>
+                <input type="password" 
+                       name="{{ form.password1.name }}" 
+                       id="{{ form.password1.id_for_label }}" 
+                       class="form-control border border-dark"
+                       placeholder="Digite uma senha" 
+                       required>
+                {% for error in form.password1.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
             </div>
 
             <!-- Confirmar senha -->
             <div class="mb-3">
-                <label for="{{ form.password2.id_for_label }}" class="form-label">Confirmar senha</label>
-                <input type="password" name="{{ form.password2.name }}" id="{{ form.password2.id_for_label }}" class="form-control border border-dark" placeholder="Confirme sua senha" required>
-                {% for error in form.password2.errors %}<div class="text-danger">{{ error }}</div>{% endfor %}
+                <label for="{{ form.password2.id_for_label }}" class="form-label">
+                    Confirmar senha
+                </label>
+                <input type="password" 
+                       name="{{ form.password2.name }}" 
+                       id="{{ form.password2.id_for_label }}" 
+                       class="form-control border border-dark"
+                       placeholder="Confirme sua senha" 
+                       required>
+                {% for error in form.password2.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
             </div>
 
             <!-- Botão -->
@@ -52,7 +104,10 @@ Cadastro de Usuário
                 <span>Já tem uma conta?</span>
                 <a href="/login/" class="text-decoration-none">Entrar</a>
             </div>
+
         </form>
+
     </div>
 </div>
+
 {% endblock %}

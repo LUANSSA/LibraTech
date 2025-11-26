@@ -5,9 +5,25 @@ Login
 {% endblock %}
 
 {% block conteudo %}
-<div class="d-flex justify-content-center align-items-center" style="height: 80vh; background-image: url('/static/images/sua-imagem.jpg'); background-size: cover; background-position: center;">
-    <div class="card p-4 shadow" style="width: 100%; max-width: 400px; background: rgba(255,255,255,0.9);">
+
+<!-- Título + descrição -->
+<div class="text-center mt-4 mb-4">
+    <h1 class="fw-bold mb-3">Acessar Biblioteca Digital</h1>
+    <p class="lead text-muted">Entre com suas credenciais para continuar.</p>
+</div>
+
+<!-- Área do fundo, mas sem ocupar 70vh -->
+<div class="d-flex justify-content-center"
+     style="background-image: url('/static/images/sua-imagem.jpg'); 
+            background-size: cover; 
+            background-position: center;
+            padding: 40px 0;">
+
+    <div class="card p-4 shadow"
+         style="width: 100%; max-width: 400px; background: rgba(255,255,255,0.9);">
+
         <h2 class="text-center mb-4">Entrar</h2>
+
         <form method="POST">
             {% csrf_token %}
             <div class="mb-3">
@@ -25,13 +41,15 @@ Login
                 <button type="submit" class="btn btn-success">Entrar</button>
             </div>
         </form>
+
         {% if messages %}
             {% for message in messages %}
-                <div class="alert alert-{{ message.tags }} mb-3">
+                <div class="alert alert-{{ message.tags }} mt-3 mb-0">
                     {{ message }}
                 </div>
             {% endfor %}
         {% endif %}
     </div>
 </div>
+
 {% endblock %}
