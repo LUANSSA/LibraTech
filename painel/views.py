@@ -3,7 +3,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import TemplateView, ListView, CreateView, UpdateView, DeleteView
 from django.contrib import messages
 from django.urls import reverse_lazy
-from .form import PainelUsuariosCadastrarFrom, PainelEntrarEmailForm
+from .form import PainelUsuariosCadastrarFrom, SiteUsuariosCadastrarFrom, PainelEntrarEmailForm
 from django.db.models import Q
 
 # Models
@@ -120,7 +120,7 @@ class PainelSairView(LoginRequiredMixin, LogoutView):
 # Painel site cadastrar usuários
 class PainelSiteUsuariosCadastrarView(CreateView):
     model = User
-    form_class = PainelUsuariosCadastrarFrom
+    form_class = SiteUsuariosCadastrarFrom
     template_name = "painel/painel_site_usuarios_form.html"
     success_url = reverse_lazy("painel_site_entrar")
 

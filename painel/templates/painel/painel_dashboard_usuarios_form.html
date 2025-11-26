@@ -32,7 +32,7 @@
             {% csrf_token %}
 
             <!-- Nome de Usuário -->
-            <div class="col-md-6">
+            <div class="col-md-12">
                 <label for="{{ form.nome_completo.id_for_label }}" class="form-label"><b>{{ form.nome_completo.label }}</b></label>
                 <input type="text" name="{{ form.nome_completo.name }}" id="{{ form.nome_completo.id_for_label }}" value="{% if form.instance.pk %}{{ form.instance.first_name }}{% else %}{{ form.nome_completo.value|default_if_none:'' }}{% endif %}" class="form-control border border-dark" placeholder="Digite seu nome completo" required>
                 {% for error in form.nome_completo.errors %}
@@ -48,6 +48,28 @@
                     <div class="text-danger">{{ error }}</div>
                 {% endfor %}
             </div>
+
+            <!-- Grupo -->
+            <div class="col-md-6">
+                <label for="{{ form.groups.id_for_label }}" class="form-label">
+                    <b>{{ form.groups.label }}</b>
+                </label>
+
+                <select name="{{ form.groups.name }}" id="{{ form.groups.id_for_label }}"
+                        class="form-select border border-dark" required>
+                    {% for group in form.groups.field.queryset %}
+                        <option value="{{ group.id }}"
+                            {% if form.instance.pk and group in form.instance.groups.all %}selected{% endif %}>
+                            {{ group.name }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                {% for error in form.groups.errors %}
+                    <div class="text-danger">{{ error }}</div>
+                {% endfor %}
+            </div>
+
 
             <!-- Senha -->
             <div class="col-md-6">
