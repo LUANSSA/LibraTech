@@ -5,7 +5,6 @@ Cadastro de Usuário
 {% endblock %}
 
 {% block conteudo %}
-
 <!-- Área com fundo somente no formulário -->
 <div class="d-flex justify-content-center"
      style="background-image: url('/static/images/sua-imagem.jpg');
@@ -16,8 +15,8 @@ Cadastro de Usuário
     <div class="card p-4 shadow"
          style="width: 100%; max-width: 400px; background: rgba(255, 255, 255, 0.9);">
 
-        <h1 class="fw-bold mb-3">Criar Conta</h1>
-        <p class="lead text-muted">Preencha os campos para acessar todos os recursos da biblioteca.</p>
+        <h1 class="text-center fw-bold mb-3">Criar Conta no Acervo Digital</h1>
+        <p class="text-center lead text-muted">Preencha os campos para acessar todos os recursos da biblioteca.</p>
 
         <form method="POST">
             {% csrf_token %}

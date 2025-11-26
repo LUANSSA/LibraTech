@@ -5,8 +5,6 @@ Login
 {% endblock %}
 
 {% block conteudo %}
-
-
 <!-- Área do fundo, mas sem ocupar 70vh -->
 <div class="d-flex justify-content-center"
      style="background-image: url('/static/images/sua-imagem.jpg'); 
@@ -16,9 +14,9 @@ Login
 
     <div class="card p-4 shadow"
          style="width: 100%; max-width: 400px; background: rgba(255,255,255,0.9);">
-
-        <h1 class="fw-bold mb-3">Acessar Biblioteca Digital</h1>
-        <p class="lead text-muted">Entre com suas credenciais para continuar.</p>
+  
+        <h1 class="text-center fw-bold mb-3">Acessar Biblioteca Digital</h1>
+        <p class="text-center lead text-muted">Entre com suas credenciais para continuar.</p>
 
         <form method="POST">
             {% csrf_token %}
