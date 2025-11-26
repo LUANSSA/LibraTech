@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 
 # Formulário de cadastro de usuário
 class PainelUsuariosCadastrarFrom(UserCreationForm):
@@ -29,6 +29,11 @@ class PainelUsuariosCadastrarFrom(UserCreationForm):
         # Salva
         if commit:
             user.save()
+            
+            # Adiciona grupo visitante caso usuário não tenha grupo
+            if user.groups.count() == 0:
+                grupo_visitante, criado = Group.objects.get_or_create(name="Visitante")
+                user.groups.add(grupo_visitante)
 
         return user
 

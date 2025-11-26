@@ -100,7 +100,8 @@ class PainlDashboardUsuariosListarView(LoginRequiredMixin, ListView):
         
         queryset = queryset.filter(
             Q(first_name__icontains=search) |
-            Q(email__icontains=search)
+            Q(email__icontains=search) | 
+            Q(groups__name__icontains=search)
 
         ).order_by("id")
 
