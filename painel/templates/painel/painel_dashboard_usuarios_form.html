@@ -34,7 +34,7 @@
             <!-- Nome de Usuário -->
             <div class="col-md-6">
                 <label for="{{ form.nome_completo.id_for_label }}" class="form-label"><b>{{ form.nome_completo.label }}</b></label>
-                <input type="text" name="{{ form.nome_completo.name }}" id="{{ form.nome_completo.id_for_label }}" value="{{ form.nome_completo.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Digite seu nome completo" required>
+                <input type="text" name="{{ form.nome_completo.name }}" id="{{ form.nome_completo.id_for_label }}" value="{% if form.instance.pk %}{{ form.instance.first_name }}{% else %}{{ form.nome_completo.value|default_if_none:'' }}{% endif %}" class="form-control border border-dark" placeholder="Digite seu nome completo" required>
                 {% for error in form.nome_completo.errors %}
                     <div class="text-danger">{{ error }}</div>
                 {% endfor %}
@@ -43,7 +43,7 @@
             <!-- E-mail -->
             <div class="col-md-6">
                 <label for="{{ form.email.id_for_label }}" class="form-label"><b>{{ form.email.label }}</b></label>
-                <input type="email" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" value="{{ form.email.value|default_if_none:'' }}" class="form-control border border-dark">
+                <input type="email" name="{{ form.email.name }}" id="{{ form.email.id_for_label }}" value="{{ form.email.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Digite seu e-mail" required>
                 {% for error in form.email.errors %}
                     <div class="text-danger">{{ error }}</div>
                 {% endfor %}
@@ -52,7 +52,7 @@
             <!-- Senha -->
             <div class="col-md-6">
                 <label for="{{ form.password1.id_for_label }}" class="form-label"><b>{{ form.password1.label }}</b></label>
-                <input type="password" name="{{ form.password1.name }}" id="{{ form.password1.id_for_label }}" value="{{ form.password1.value|default_if_none:'' }}" class="form-control border border-dark">
+                <input type="password" name="{{ form.password1.name }}" id="{{ form.password1.id_for_label }}" value="{{ form.password1.value|default_if_none:'' }}" class="form-control border border-dark" placeholder="Digite uma senha" required>
                 {% for error in form.password1.errors %}
                     <div class="text-danger">{{ error }}</div>
                 {% endfor %}
@@ -61,7 +61,7 @@
             <!-- Confirmar Senha -->
             <div class="col-md-6">
                 <label for="{{ form.password2.id_for_label }}" class="form-label"><b>{{ form.password2.label }}</b></label>
-                <input type="password" name="{{ form.password2.name }}" id="{{ form.password2.id_for_label }}" value="{{ form.password2.value|default_if_none:'' }}" class="form-control border border-dark">
+                <input type="password" name="{{ form.password2.name }}" id="{{ form.password2.id_for_label }}" value="{{ form.password2.value|default_if_none:'' }}" class="form-control border border-dark"  placeholder="Digite a mesma senha" required>
                 {% for error in form.password2.errors %}
                     <div class="text-danger">{{ error }}</div>
                 {% endfor %}
