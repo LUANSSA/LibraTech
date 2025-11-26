@@ -8,7 +8,7 @@ Biblioteca Digital - Colégio São Bento
 {% with request.GET.search as querystring %}
 
 <!-- ======= Título e Pesquisa ======= -->
-<div class="text-center mb-4">
+<!-- <div class="text-center mb-4">
 
     {% comment %} Título {% endcomment %}
     <h1 class="mb-3 text-center">
@@ -22,10 +22,10 @@ Biblioteca Digital - Colégio São Bento
         <input class="form-control me-2 w-50" type="search" name="search" value="{{ querystring }}" placeholder="Digite sua busca..." aria-label="Search">
         <button class="btn btn-outline-success" type="submit">Buscar</button>
     </form>
-</div>
+</div> -->
 
 <!-- ======= LISTAGEM DESKTOP (Tabela) ======= -->
-{% if querystring %}
+<!-- {% if querystring %}
 <div class="d-none d-md-block">
     <table class="table table-hover align-middle">
         <thead>
@@ -113,10 +113,10 @@ Biblioteca Digital - Colégio São Bento
         </tbody>
     </table>
 </div>
-{% endif %}
+{% endif %} -->
 
 <!-- ======= LISTAGEM MOBILE (Cards) ======= -->
-{% if querystring %}
+<!-- {% if querystring %}
 <div class="d-md-none">
     <div class="row gy-3">
         {% for item in itens %}
@@ -164,7 +164,84 @@ Biblioteca Digital - Colégio São Bento
         {% endfor %}
     </div>
 </div>
-{% endif %}
+{% endif %} -->
+
+
+<!-- ======= Cabeçalho da Home ======= -->
+<div class="text-center mb-5">
+
+    <h1 class="fw-bold mb-3">
+        Bem-vindos ao Acervo Digital<br>
+        Colégio e Mosteiro São Bento
+    </h1>
+
+    <p class="lead text-muted">
+        Pesquise livros, revistas, periódicos, renove empréstimos e solicite acesso a arquivos históricos.
+    </p>
+</div>
+
+<!-- ======= Cards de Acesso Rápido ======= -->
+<div class="container mb-5">
+    <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+
+        <!-- Card Livros (SUCCESS) -->
+        <div class="col-md-4 col-lg-3">
+            <div class="card h-100 shadow-sm border-success">
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-bold">📚 Livros</h5>
+                    <p class="card-text text-muted">Consulte títulos disponíveis e acesse detalhes de cada obra.</p>
+                    <a href="{% url 'livros_listar' %}" class="btn btn-success btn-sm">Acessar</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card Revistas (WARNING) -->
+        <div class="col-md-4 col-lg-3">
+            <div class="card h-100 shadow-sm border-warning">
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-bold">📰 Revistas</h5>
+                    <p class="card-text text-muted">Explore edições e acervo completo de revistas.</p>
+                    <a href="{% url 'revistas_listar' %}" class="btn btn-warning btn-sm text-dark">Acessar</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card Periódicos (PRIMARY) -->
+        <div class="col-md-4 col-lg-3">
+            <div class="card h-100 shadow-sm border-primary">
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-bold">📖 Periódicos</h5>
+                    <p class="card-text text-muted">Pesquise periódicos disponíveis no acervo.</p>
+                    <a href="{% url 'periodicos_listar' %}" class="btn btn-primary btn-sm">Acessar</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card Arquivos Históricos (SECONDARY) -->
+        <div class="col-md-4 col-lg-3">
+            <div class="card h-100 shadow-sm border-secondary">
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-bold">📜 Arquivos Históricos</h5>
+                    <p class="card-text text-muted">Solicite acesso aos arquivos preservados da instituição.</p>
+                    <a href="" class="btn btn-secondary btn-sm">Solicitar</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card Renovação de Empréstimo (DARK) -->
+        <div class="col-md-4 col-lg-3">
+            <div class="card h-100 shadow-sm border-dark">
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-bold">🔄 Renovação de Empréstimo</h5>
+                    <p class="card-text text-muted">Renove online os empréstimos vinculados ao seu cadastro.</p>
+                    <a href="" class="btn btn-dark btn-sm">Renovar</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
 {% endwith %}
 {% endblock conteudo %}
